@@ -167,6 +167,11 @@
   letter-spacing: -0.075em;
   font-weight: 580;
 }
+.lp-accent {
+  background: linear-gradient(115deg, #ff8a5c 5%, var(--accent) 42%, #b8231b 88%);
+  background-clip: text;
+  color: transparent;
+}
 .lp-hero__accent {
   background: linear-gradient(115deg, #ff8a5c 5%, var(--accent) 42%, #b8231b 88%);
   background-clip: text;
@@ -295,19 +300,24 @@
   padding: 22px;
   transition: transform var(--panel), border-color var(--panel);
 }
-.lp-feature:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-strong);
-}
 .lp-feature__icon {
   display: grid;
   place-items: center;
   width: 38px;
   height: 38px;
-  border: 1px solid var(--border-strong);
+  border: 1px solid rgba(229, 52, 43, 0.28);
   border-radius: 11px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(229, 52, 43, 0.1);
   color: var(--accent);
+  transition: background var(--panel), border-color var(--panel);
+}
+.lp-feature:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+}
+.lp-feature:hover .lp-feature__icon {
+  background: rgba(229, 52, 43, 0.16);
+  border-color: rgba(229, 52, 43, 0.45);
 }
 .lp-feature h3 {
   margin: 30px 0 8px;

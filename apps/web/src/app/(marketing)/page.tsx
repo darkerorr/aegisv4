@@ -1,18 +1,19 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  Bot,
   Box,
   Check,
-  Cloud,
   Code2,
   Download,
   Fingerprint,
-  FolderKanban,
   Gauge,
   HardDrive,
-  Laptop,
   MessagesSquare,
   Network,
+  PenLine,
+  Plug,
+  SlidersHorizontal,
   Sparkles,
   TerminalSquare,
   Workflow,
@@ -24,12 +25,12 @@ import { PrivacyVisual } from "@/components/marketing/privacy-visual";
 import { HeroActions } from "@/components/marketing/hero-actions";
 
 const capabilities = [
-  { icon: Laptop, title: "Local, first", copy: "Ollama and LM Studio runtimes keep sensitive work on hardware you control — clearly labeled as local." },
-  { icon: Cloud, title: "Cloud when it counts", copy: "Reach NVIDIA NIM, OpenRouter and compatible providers for frontier reasoning, vision and scale." },
-  { icon: MessagesSquare, title: "One continuous context", copy: "Move between models without rebuilding the conversation. Your context, project and tools stay organized." },
-  { icon: FolderKanban, title: "Projects with memory", copy: "Bind durable instructions, model choice and related conversations to each body of work." },
-  { icon: Workflow, title: "Tools on explicit terms", copy: "Connect Google Workspace and GitHub with visible permission states and scopes you control." },
-  { icon: Fingerprint, title: "Private by design", copy: "Nothing moves silently. You choose the model and the tools involved in every workflow." },
+  { icon: Network, title: "Multi-providers", copy: "OpenAI, Anthropic, NVIDIA NIM, OpenRouter, Groq, Ollama et plus — gérez toutes vos clés depuis un seul endroit, chiffrées et stockées localement." },
+  { icon: SlidersHorizontal, title: "Sélecteur de modèle", copy: "Choisissez le bon modèle pour chaque tâche, regroupé par capacité plutôt que par URL — avec les logos de vos providers." },
+  { icon: PenLine, title: "Composer avancé", copy: "Outils, pièces jointes, images et recherche web — un composer qui conserve tout votre contexte, sans perdre le fil." },
+  { icon: Plug, title: "Connecteurs", copy: "GitHub, Gmail, Drive et Calendar se connectent avec des états de permission explicites, révoquables à tout moment." },
+  { icon: Bot, title: "Work Mode", copy: "Une surface dédiée aux sessions longues et aux tâches d'agent, avec historique, contexte et outils séparés." },
+  { icon: HardDrive, title: "Local-first", copy: "Ollama et LM Studio tournent sur votre matériel, clairement identifiés — aucun envoi silencieux hors de votre machine." },
 ];
 
 export default function Landing() {
@@ -88,12 +89,13 @@ export default function Landing() {
       <section id="features" className="lp-features">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">03 / Capabilities</span>
-            <h2 className="lp-section-title">Built for deliberate intelligence.</h2>
+            <span className="lp-eyebrow">02 / Fonctionnalités</span>
+            <h2 className="lp-section-title">La puissance de tous vos modèles,<br /><span className="lp-accent">orchestrée.</span></h2>
+            <p className="lp-section-copy">Un seul endroit pour piloter vos providers, choisir vos modèles et garder le contrôle de vos données.</p>
           </Reveal>
           <div className="lp-features__grid">
-            {capabilities.map((feature) => (
-              <Reveal key={feature.title}>
+            {capabilities.map((feature, i) => (
+              <Reveal key={feature.title} delay={i * 0.06}>
                 <article className="lp-feature">
                   <span className="lp-feature__icon"><feature.icon size={18} /></span>
                   <h3>{feature.title}</h3>
