@@ -52,18 +52,18 @@ const providers = [
 ];
 
 const steps = [
-  { n: "01", icon: Network, title: "Connecte tes providers", copy: "Ajoutez une clé API (OpenAI, Anthropic, NVIDIA, Groq…) ou un runtime local (Ollama, LM Studio). Vos clés restent chiffrées sur votre machine." },
-  { n: "02", icon: SlidersHorizontal, title: "Choisis ton modèle", copy: "Aegis détecte vos accès et ne propose que les modèles réellement disponibles — regroupés par capacité, pas par URL." },
-  { n: "03", icon: Bot, title: "Chat ou Work, avec tes outils", copy: "Discutez dans un fil persistant, ou passez en Work Mode pour confier de vraies tâches à l'agent — GitHub, Drive et Calendar inclus." },
+  { n: "01", icon: Network, title: "Connect your providers", copy: "Add an API key (OpenAI, Anthropic, NVIDIA, Groq…) or a local runtime (Ollama, LM Studio). Your keys stay encrypted on your machine." },
+  { n: "02", icon: SlidersHorizontal, title: "Choose your model", copy: "Aegis probes your credentials and only offers models you can actually reach — grouped by capability, not by URL." },
+  { n: "03", icon: Bot, title: "Chat or Work, with your tools", copy: "Talk in a persistent thread, or switch to Work Mode to delegate real tasks to the agent — GitHub, Drive and Calendar included." },
 ];
 
 const capabilities = [
-  { icon: Network, title: "Multi-providers", copy: "OpenAI, Anthropic, NVIDIA NIM, OpenRouter, Groq, Ollama et plus — gérez toutes vos clés depuis un seul endroit, chiffrées et stockées localement." },
-  { icon: SlidersHorizontal, title: "Sélecteur de modèle", copy: "Choisissez le bon modèle pour chaque tâche, regroupé par capacité plutôt que par URL — avec les logos de vos providers." },
-  { icon: PenLine, title: "Composer avancé", copy: "Outils, pièces jointes, images et recherche web — un composer qui conserve tout votre contexte, sans perdre le fil." },
-  { icon: Plug, title: "Connecteurs", copy: "GitHub, Gmail, Drive et Calendar se connectent avec des états de permission explicites, révoquables à tout moment." },
-  { icon: Bot, title: "Work Mode", copy: "Une surface dédiée aux sessions longues et aux tâches d'agent, avec historique, contexte et outils séparés." },
-  { icon: HardDrive, title: "Local-first", copy: "Ollama et LM Studio tournent sur votre matériel, clairement identifiés — aucun envoi silencieux hors de votre machine." },
+  { icon: Network, title: "Multi-provider", copy: "OpenAI, Anthropic, NVIDIA NIM, OpenRouter, Groq, Ollama and more — manage every key from one place, encrypted and stored locally." },
+  { icon: SlidersHorizontal, title: "Model picker", copy: "Choose the right model for each task, grouped by capability instead of URL — with your providers' logos." },
+  { icon: PenLine, title: "Advanced composer", copy: "Tools, attachments, images and web search — a composer that keeps your whole context, without losing the thread." },
+  { icon: Plug, title: "Connectors", copy: "GitHub, Gmail, Drive and Calendar connect with explicit permission states you can revoke at any time." },
+  { icon: Bot, title: "Work Mode", copy: "A dedicated surface for long sessions and agent tasks, with separate history, context and tools." },
+  { icon: HardDrive, title: "Local-first", copy: "Ollama and LM Studio run on hardware you control, clearly labeled — nothing leaves your machine silently." },
 ];
 
 export default function Landing() {
@@ -75,14 +75,14 @@ export default function Landing() {
         <div className="lp-hero__glow" aria-hidden="true" />
         <div className="shell lp-hero__inner">
           <div className="lp-hero__copy">
-            <span className="lp-badge"><i />Multi-providers IA · Local-first</span>
-            <h1 className="lp-hero__title">Tous vos modèles d&apos;IA.<br /><span className="lp-hero__accent">Une seule interface.</span></h1>
-            <p className="lp-hero__lead">Orchestrez OpenAI, Anthropic, NVIDIA NIM, OpenRouter, Groq, Ollama et plus dans un workspace unique — avec le contrôle total de vos providers et une exécution locale possible.</p>
+            <span className="lp-badge"><i />Multi-provider AI · Local-first</span>
+            <h1 className="lp-hero__title">Every model you use.<br /><span className="lp-hero__accent">One deliberate workspace.</span></h1>
+            <p className="lp-hero__lead">Orchestrate OpenAI, Anthropic, NVIDIA NIM, OpenRouter, Groq, Ollama and more from a single workspace — with full control over your providers and local execution when you want it.</p>
             <HeroActions />
             <div className="lp-hero__metrics">
-              <div><strong>20+</strong><span>fournisseurs IA</span></div>
+              <div><strong>20+</strong><span>AI providers</span></div>
               <div><strong>3</strong><span>surfaces · web, desktop, CLI</span></div>
-              <div><strong>MIT</strong><span>licence open source</span></div>
+              <div><strong>MIT</strong><span>open-source license</span></div>
               <div><strong>Local-first</strong><span>Ollama &amp; LM Studio</span></div>
             </div>
           </div>
@@ -95,9 +95,9 @@ export default function Landing() {
       <section className="lp-start">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">03 / Comment ça marche</span>
-            <h2 className="lp-section-title">Prêt en trois <span className="lp-accent">étapes.</span></h2>
-            <p className="lp-section-copy">Aucun tableur, aucune configuration interminable — Aegis démarre en trois mouvements délibérés.</p>
+            <span className="lp-eyebrow">03 / How it works</span>
+            <h2 className="lp-section-title">Ready in three <span className="lp-accent">steps.</span></h2>
+            <p className="lp-section-copy">No spreadsheets, no endless setup — Aegis starts in three deliberate moves.</p>
           </Reveal>
           <div className="lp-steps">
             <span className="lp-steps__line" aria-hidden="true" />
@@ -107,7 +107,7 @@ export default function Landing() {
                 <Reveal delay={i * 0.06}>
                   <article className="lp-step">
                     <span className="lp-step__icon"><step.icon size={18} /></span>
-                    <em className="lp-step__n">ÉTAPE {step.n}</em>
+                    <em className="lp-step__n">STEP {step.n}</em>
                     <h3>{step.title}</h3>
                     <p>{step.copy}</p>
                   </article>
@@ -122,9 +122,9 @@ export default function Landing() {
       <section id="features" className="lp-features">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">02 / Fonctionnalités</span>
-            <h2 className="lp-section-title">La puissance de tous vos modèles,<br /><span className="lp-accent">orchestrée.</span></h2>
-            <p className="lp-section-copy">Un seul endroit pour piloter vos providers, choisir vos modèles et garder le contrôle de vos données.</p>
+            <span className="lp-eyebrow">02 / Capabilities</span>
+            <h2 className="lp-section-title">The power of every model,<br /><span className="lp-accent">orchestrated.</span></h2>
+            <p className="lp-section-copy">One place to drive your providers, choose your models and keep control of your data.</p>
           </Reveal>
           <div className="lp-features__grid">
             {capabilities.map((feature, i) => (
@@ -165,9 +165,9 @@ export default function Landing() {
       <section id="providers" className="lp-providers">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">04 / Providers supportés</span>
-            <h2 className="lp-section-title">Utilise n&apos;importe quel <span className="lp-accent">modèle.</span></h2>
-            <p className="lp-section-copy">Vingt-trois fournisseurs — du raisonnement de pointe au local sur votre machine — pilotés depuis une seule interface.</p>
+            <span className="lp-eyebrow">04 / Supported providers</span>
+            <h2 className="lp-section-title">Use any model you <span className="lp-accent">want.</span></h2>
+            <p className="lp-section-copy">Twenty-three providers — from frontier reasoning to local on your machine — driven from a single interface.</p>
           </Reveal>
           <div className="lp-provider-cloud">
             {providers.map((p, i) => (
@@ -234,12 +234,12 @@ export default function Landing() {
       <section className="lp-cta">
         <div className="shell">
           <Reveal>
-            <span className="lp-eyebrow">Passez au niveau supérieur</span>
-            <h2 className="lp-cta__title">Tous vos modèles,<br /><span className="lp-accent">une seule interface.</span></h2>
-            <p>Vos modèles. Vos outils. Vos limites. Le tout dans un workspace open source.</p>
+            <span className="lp-eyebrow">Built for deliberate intelligence</span>
+            <h2 className="lp-cta__title">Every model you use.<br /><span className="lp-accent">One interface.</span></h2>
+            <p>Your models. Your tools. Your boundaries — in an open-source workspace.</p>
             <div className="lp-cta__actions">
-              <Link href="/register" className="button button-primary">Commencer gratuitement <ArrowRight size={17} /></Link>
-              <a href="https://github.com/darkerorr/aegisv4" target="_blank" rel="noreferrer" className="button button-secondary"><Github size={17} />Voir sur GitHub</a>
+              <Link href="/register" className="button button-primary">Start free <ArrowRight size={17} /></Link>
+              <a href="https://github.com/darkerorr/aegisv4" target="_blank" rel="noreferrer" className="button button-secondary"><Github size={17} />View on GitHub</a>
             </div>
           </Reveal>
         </div>
