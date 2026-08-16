@@ -9,6 +9,7 @@ import {
   Download,
   Fingerprint,
   Gauge,
+  Github,
   HardDrive,
   Network,
   PenLine,
@@ -233,12 +234,12 @@ export default function Landing() {
       <section className="lp-cta">
         <div className="shell">
           <Reveal>
-            <span className="lp-eyebrow">Built for deliberate intelligence</span>
-            <h2 className="lp-cta__title">Think beyond<br />one model.</h2>
-            <p>Your models. Your tools. Your boundaries.</p>
+            <span className="lp-eyebrow">Passez au niveau supérieur</span>
+            <h2 className="lp-cta__title">Tous vos modèles,<br /><span className="lp-accent">une seule interface.</span></h2>
+            <p>Vos modèles. Vos outils. Vos limites. Le tout dans un workspace open source.</p>
             <div className="lp-cta__actions">
-              <Link href="/register" className="button button-primary">Start free <ArrowRight size={17} /></Link>
-              <Link href="/docs" className="button button-secondary"><HardDrive size={17} />Read the docs</Link>
+              <Link href="/register" className="button button-primary">Commencer gratuitement <ArrowRight size={17} /></Link>
+              <a href="https://github.com/darkerorr/aegisv4" target="_blank" rel="noreferrer" className="button button-secondary"><Github size={17} />Voir sur GitHub</a>
             </div>
           </Reveal>
         </div>
