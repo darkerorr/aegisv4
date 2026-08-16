@@ -1,0 +1,9 @@
+{
+  "name": "@aegis/shared-ui",
+  "version": "0.3.0",
+  "type": "module",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" }, "./brand/AegisLogo": { "types": "./dist/brand/AegisLogo.d.ts", "import": "./dist/brand/AegisLogo.js" }, "./theme/tokens.css": "./src/theme/tokens.css", "./theme/components.css": "./src/theme/components.css" },
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "dependencies": { "react": "^19.1.1" },
+  "devDependencies": { "@types/react": "^19.1.12", "typescript": "^5.8.3" }
+}

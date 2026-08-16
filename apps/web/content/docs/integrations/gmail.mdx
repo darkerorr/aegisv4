@@ -1,0 +1,20 @@
+---
+title: Gmail access
+description: Understand Google connection, Gmail permission and current mailbox behavior.
+group: Integrations
+status: beta
+updated: 2026-07-23
+keywords: gmail, google, scopes, permission
+---
+
+## Connection and permission
+
+Connecting Google establishes an account connection; Gmail availability still depends on the granted Gmail scopes. Aegis must show a permission-required state when that scope is missing.
+
+## Current Web behavior
+
+The Gmail page can list and inspect messages through authenticated API routes. A model must not claim it read Gmail unless an actual Gmail result was provided to the chat execution.
+
+## If Gmail is not accessed
+
+Check Connections for Google status and Gmail permission. Re-authorize only the required scope, then retry. A normal chat prompt alone is not evidence that the mailbox was queried.

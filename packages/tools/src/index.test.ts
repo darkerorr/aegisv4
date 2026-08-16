@@ -1,0 +1,2 @@
+import { describe,expect,it } from "vitest";import { getTool,toolRegistry } from "./index.js";
+describe("tool registry",()=>{it("publishes only explicitly implemented capabilities as implemented",()=>{expect(getTool("gmail.getLatestMessage")?.implemented).toBe(true);expect(getTool("web.search")?.implemented).toBe(true);expect(getTool("web.readPage")?.implemented).toBe(true);expect(getTool("github.listRepositories")?.implemented).toBe(true)});it("keeps tool identifiers unique",()=>expect(new Set(toolRegistry.map(tool=>tool.id)).size).toBe(toolRegistry.length));});

@@ -1,0 +1,8 @@
+{
+  "name": "@aegis/web",
+  "version": "0.3.0",
+  "private": true,
+  "scripts": { "dev": "next dev -H 127.0.0.1 -p 3000", "build": "next build", "start": "next start -H 127.0.0.1 -p 3000", "lint": "tsc --noEmit -p tsconfig.json" },
+  "dependencies": { "@aegis/api-client": "workspace:*", "@aegis/shared-ui": "workspace:*", "framer-motion": "^12.23.12", "lucide-react": "^0.468.0", "next": "^15.5.2", "react": "^19.1.1", "react-dom": "^19.1.1", "react-markdown": "^10.1.0", "remark-gfm": "^4.0.1" },
+  "devDependencies": { "@types/node": "^22.13.10", "@types/react": "^19.1.12", "@types/react-dom": "^19.1.9", "autoprefixer": "^10.4.21", "eslint": "^9.35.0", "eslint-config-next": "^15.5.2", "postcss": "^8.5.6", "tailwindcss": "^3.4.17", "typescript": "^5.8.3" }
+}

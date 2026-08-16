@@ -1,0 +1,20 @@
+---
+title: Automatic tools
+description: Status of automatic tool selection and anti-hallucination requirements.
+group: Tools and agents
+status: planned
+updated: 2026-07-23
+keywords: tools, agent, gmail, web search, policy
+---
+
+## Current status
+
+A shared production agent runtime that classifies intent, executes tools and validates model claims is not exposed by the current API. Automatic tools are therefore **Planned**.
+
+## Required behavior
+
+Before this status can become Beta, Aegis must record a real tool execution, place its structured result in model context and attach a source to the answer. Without that result, the model must say it did not access the external service.
+
+## Safety rule
+
+The last user message must never be transformed into a Gmail, Drive, GitHub or web-search result.

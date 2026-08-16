@@ -1,0 +1,27 @@
+---
+title: Connect NVIDIA
+description: Configure the NVIDIA NIM provider and diagnose model discovery errors.
+group: Providers
+status: beta
+updated: 2026-07-23
+keywords: nvidia, nim, api key, rate limit
+---
+
+## Before you begin
+
+Create a key through NVIDIA's own service and review NVIDIA's current terms. Aegis config defines the official-compatible base URL as `https://integrate.api.nvidia.com/v1`.
+
+## Configure
+
+1. Open **Providers**.
+2. Choose NVIDIA NIM.
+3. Enter the credential only in the protected provider form.
+4. Test the connection and refresh models.
+5. Select an available NVIDIA model from Chat.
+
+## Errors
+
+- **Rejected key:** create or copy the correct API key; do not use an account password.
+- **Rate limited:** wait for the provider reset window.
+- **No models:** verify account access and refresh discovery.
+- **Timeout:** check network access to NVIDIA before retrying.

@@ -1,0 +1,351 @@
+/* ============================================================
+   AEGIS — V3 MOTION & MICRO-INTERACTION FOUNDATION
+   Layer added on top of premium-v2. Everything is motion-lite,
+   honors prefers-reduced-motion, and never overrides layout.
+   ============================================================ */
+
+:root {
+  --aegis-tile: #050505;
+  --aegis-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --aegis-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================ FOCUS VISIBLE (accessibility) ============================ */
+:where(a, button, input, textarea, select, summary, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid rgba(212, 212, 212, 0.85);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+.aegis-icon-button:focus-visible, .aegis-btn:focus-visible, .aegis-composer-btn:focus-visible {
+  outline: 2px solid rgba(212, 212, 212, 0.9);
+  outline-offset: 2px;
+}
+
+/* ============================ ICON MICRO-INTERACTIONS ============================ */
+.aegis-icon { transition: transform 0.22s var(--aegis-spring), color 0.2s ease, filter 0.2s ease; }
+.aegis-icon-button { transition: transform 0.18s var(--aegis-spring), background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease; }
+.aegis-icon-button:hover { transform: translateY(-1px) scale(1.06); }
+.aegis-icon-button:active { transform: scale(0.94); }
+.aegis-icon-button:hover svg { filter: drop-shadow(0 0 6px rgba(212, 212, 212, 0.55)); }
+
+/* Hoverable list rows: slide + glow the leading icon */
+.aegis-home-row, .aegis-search-result, .aegis-conv-item, .aegis-mail-item, .aegis-settings-grid > a, .aegis-settings-grid > button {
+  transition: transform 0.16s var(--aegis-ease), background 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+.aegis-home-row:hover, .aegis-search-result:hover, .aegis-conv-item:hover, .aegis-mail-item:hover {
+  transform: translateX(2px);
+}
+
+/* ============================ BUTTON RIPPLE ============================ */
+.aegis-btn, .aegis-composer-btn, .aegis-newchat, .aegis-pill-filter, .aegis-home__prompt {
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.aegis-btn::after, .aegis-composer-btn::after, .aegis-newchat::after, .aegis-pill-filter::after, .aegis-home__prompt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--aegis-rx, 50%) var(--aegis-ry, 50%), rgba(255, 255, 255, 0.28), transparent 55%);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.4s ease, transform 0.45s var(--aegis-ease);
+}
+.aegis-btn:active::after, .aegis-composer-btn:active::after, .aegis-newchat:active::after, .aegis-pill-filter:active::after, .aegis-home__prompt:active::after {
+  opacity: 1;
+  transform: scale(1.6);
+  transition: 0s;
+}
+
+/* ============================ FLOAT (decorative) ============================ */
+@keyframes aegis-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+.aegis-float { animation: aegis-float 7s ease-in-out infinite; }
+.aegis-float-slow { animation: aegis-float 11s ease-in-out infinite; }
+
+/* ============================ PREMIUM SKELETON ============================ */
+.aegis-skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+}
+.aegis-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.09) 45%, transparent 70%);
+  background-size: 220% 100%;
+  animation: aegis-shimmer 1.6s linear infinite;
+}
+
+/* Streaming shimmer under the caret */
+@keyframes aegis-sheen {
+  0% { background-position: -120% 0; }
+  100% { background-position: 120% 0; }
+}
+.aegis-msg.is-streaming .aegis-msg__card {
+  border-color: rgba(212, 212, 212, 0.32);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06), 0 0 34px rgba(212, 212, 212, 0.1);
+}
+
+/* ============================ TYPING INDICATOR ============================ */
+.aegis-typing { display: inline-flex; align-items: center; gap: 4px; padding: 4px 0; }
+.aegis-typing i {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--aegis-blue);
+  animation: aegis-typing 1.2s var(--aegis-ease) infinite;
+}
+.aegis-typing i:nth-child(2) { animation-delay: 0.16s; }
+.aegis-typing i:nth-child(3) { animation-delay: 0.32s; }
+@keyframes aegis-typing {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+/* ============================ CARD FLOAT / GLOW HOVER ============================ */
+.aegis-card, .aegis-model-card, .aegis-provider-card, .aegis-suggest-card,
+.aegis-drive-file, .aegis-scope-card, .aegis-wallpaper-thumb, .aegis-settings-grid > a, .aegis-settings-grid > button {
+  will-change: transform;
+}
+.aegis-card:hover, .aegis-provider-card:hover {
+  transform: translateY(-4px);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.07), 0 24px 64px rgba(0, 0, 0, 0.38), 0 0 40px rgba(212, 212, 212, 0.08);
+}
+
+/* ============================ NAV ITEM ACTIVE PULSE ============================ */
+.aegis-sidebar__item.is-active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 3px;
+  height: 18px;
+  transform: translateY(-50%);
+  border-radius: 3px;
+  background: var(--aegis-blue);
+  box-shadow: 0 0 14px rgba(212, 212, 212, 0.9);
+  animation: aegis-pulse-glow 2.4s ease-in-out infinite;
+}
+@keyframes aegis-pulse-glow {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.4; }
+}
+
+/* ============================ TOOLTIP ANIMATION ============================ */
+.tooltip {
+  animation: aegis-tooltip-in 0.16s var(--aegis-ease) both;
+}
+@keyframes aegis-tooltip-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================ POPOVER / DIALOG ENTRANCE ============================ */
+@keyframes aegis-pop-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================ PROGRESS BAR ============================ */
+.aegis-progress {
+  position: relative;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.aegis-progress > i {
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--aegis-blue-2), var(--aegis-blue));
+  box-shadow: 0 0 12px rgba(212, 212, 212, 0.6);
+  animation: aegis-indeterminate 1.4s var(--aegis-ease) infinite;
+}
+@keyframes aegis-indeterminate {
+  0% { transform: translateX(-100%) scaleX(0.4); }
+  50% { transform: translateX(0) scaleX(0.7); }
+  100% { transform: translateX(100%) scaleX(0.4); }
+}
+
+/* ============================ HERO PARTICLES (home) ============================ */
+@keyframes aegis-particle {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  12% { opacity: 0.7; }
+  88% { opacity: 0.4; }
+  100% { transform: translateY(-140px) translateX(var(--aegis-px, 20px)); opacity: 0; }
+}
+.aegis-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.aegis-particles i {
+  position: absolute;
+  bottom: -8px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 212, 212, 0.9), transparent 70%);
+  animation: aegis-particle var(--aegis-pd, 9s) linear infinite;
+  opacity: 0;
+}
+
+/* ============================ BADGE PULSE ============================ */
+@keyframes aegis-badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(216, 216, 216, 0.35); }
+  55% { box-shadow: 0 0 0 5px rgba(216, 216, 216, 0); }
+}
+.aegis-dot[data-on="true"] { animation: aegis-badge-pulse 2.4s ease-out infinite; }
+
+/* ============================ REDUCED MOTION ============================ */
+@media (prefers-reduced-motion: reduce) {
+  .aegis-particles, .aegis-float, .aegis-float-slow,
+  .aegis-sidebar__item.is-active::after, .aegis-dot[data-on="true"] {
+    animation: none !important;
+  }
+}
+
+/* ============================ SIDEBAR CONNECTION STATUS V3 ============================ */
+.aegis-conn { display: grid; gap: 2px; padding: 9px 6px; }
+.aegis-conn__label {
+  display: flex; align-items: center; gap: 6px;
+  font: 700 8.5px/1 var(--aegis-font-mono);
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: #545454; padding: 2px 6px 6px;
+}
+.aegis-conn__row {
+  position: relative;
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 6px; border-radius: 8px;
+  color: var(--aegis-muted); font-size: 11px;
+  transition: background 0.14s ease, color 0.14s ease;
+}
+.aegis-conn__row:hover { background: rgba(255, 255, 255, 0.04); color: #e4e4e4; }
+.aegis-conn__row svg { flex: none; opacity: 0.85; }
+.aegis-conn__row > span:first-of-type { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.aegis-conn__row > i {
+  margin-left: auto; width: 6px; height: 6px; border-radius: 50%; flex: none;
+  background: var(--aegis-faint);
+}
+.aegis-conn__row[data-state="ok"] > i { background: var(--aegis-success); box-shadow: 0 0 8px rgba(216, 216, 216, 0.7); animation: aegis-badge-pulse 2.4s ease-out infinite; }
+.aegis-conn__row[data-state="off"] > i { background: var(--aegis-danger); box-shadow: 0 0 8px rgba(156, 156, 156, 0.5); }
+.aegis-conn__row[data-state="check"] > i { background: var(--aegis-warning); animation: aegis-pulse 1.2s ease-in-out infinite; }
+.aegis-conn__row[data-state="idle"] > i { background: var(--aegis-faint); }
+
+/* Collapsed sidebar: connection block becomes a compact dot stack */
+.aegis-sidebar.is-collapsed .aegis-conn { gap: 6px; padding: 6px 4px; }
+.aegis-sidebar.is-collapsed .aegis-conn__label,
+.aegis-sidebar.is-collapsed .aegis-conn__row > span { display: none; }
+.aegis-sidebar.is-collapsed .aegis-conn__row { justify-content: center; padding: 0; }
+.aegis-sidebar.is-collapsed .aegis-conn__row > i { margin-left: 0; width: 8px; height: 8px; }
+
+/* ============================ MESSAGE META V3 ============================ */
+.aegis-msg__plain { white-space: pre-wrap; word-break: break-word; }
+.aegis-msg__stamp {
+  display: block; margin-top: 6px;
+  font: 9px var(--aegis-font-mono);
+  color: rgba(16, 16, 16, 0.5);
+  text-align: right;
+}
+.aegis-msg__user-actions { display: flex; gap: 2px; margin-top: 6px; justify-content: flex-end; padding-right: 4px; }
+.aegis-msg__foot {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+  margin-top: 12px; padding-top: 10px;
+  border-top: 1px solid var(--aegis-line-soft);
+  color: var(--aegis-faint);
+  font: 9px var(--aegis-font-mono);
+}
+.aegis-msg__foot > span { display: inline-flex; align-items: center; gap: 4px; }
+.aegis-msg__foot time { margin-left: auto; }
+.aegis-msg__foot-model { color: var(--aegis-blue); opacity: 0.9; }
+
+/* ============================ COMPOSER META V3 ============================ */
+.aegis-composer__meta {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 6px 16px 10px;
+  color: var(--aegis-faint);
+  font: 9px var(--aegis-font-mono);
+}
+.aegis-composer__hint { display: inline-flex; align-items: center; gap: 5px; }
+.aegis-composer__hint kbd {
+  font: 8.5px var(--aegis-font-mono);
+  color: var(--aegis-muted);
+  border: 1px solid var(--aegis-line);
+  border-radius: 5px;
+  padding: 1px 5px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.aegis-composer__context { display: inline-flex; align-items: center; gap: 6px; }
+.aegis-composer__context b { color: var(--aegis-blue); font-weight: 600; }
+
+/* ============================ HOME V3 ============================ */
+.aegis-home { overflow-y: auto; }
+.aegis-home__content {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(34px, 7vh, 72px) 22px 150px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.aegis-home__model {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 7px 13px;
+  border: 1px solid var(--aegis-line-strong);
+  border-radius: 99px;
+  background: rgba(200, 200, 200, 0.06);
+  box-shadow: var(--aegis-glow-blue);
+  font-size: 11px;
+}
+.aegis-home__model b { color: #f1f1f1; font-weight: 620; }
+.aegis-home__model small { color: var(--aegis-muted); }
+.aegis-home__model em {
+  font: 600 9px var(--aegis-font-mono);
+  color: var(--aegis-blue);
+  border-left: 1px solid var(--aegis-line);
+  padding-left: 9px;
+  font-style: normal;
+}
+
+/* ============================ SEARCH V3 ============================ */
+.aegis-search-box__kbd {
+  display: inline-flex; align-items: center; gap: 3px;
+  font: 600 9px var(--aegis-font-mono);
+  color: var(--aegis-muted);
+  border: 1px solid var(--aegis-line);
+  border-radius: 6px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.03);
+  flex: none;
+}
+.aegis-search-box__clear {
+  display: grid; place-items: center;
+  width: 26px; height: 26px;
+  border: 0; border-radius: 8px;
+  background: transparent;
+  color: var(--aegis-faint);
+  cursor: pointer;
+  flex: none;
+  transition: color var(--aegis-t-fast) var(--aegis-ease-soft), background var(--aegis-t-fast) var(--aegis-ease-soft);
+}
+.aegis-search-box__clear:hover { color: var(--aegis-ink); background: rgba(255, 255, 255, 0.06); }
+.aegis-results__count {
+  font: 600 9.5px var(--aegis-font-mono);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--aegis-faint);
+  padding: 0 2px;
+}
+.aegis-results__group {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 6px;
+  font: 600 10px var(--aegis-font-mono);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--aegis-blue);
+}
+.aegis-results__group svg { flex: none; }

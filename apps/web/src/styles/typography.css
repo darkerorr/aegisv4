@@ -1,0 +1,5 @@
+.display { font-size: clamp(3.5rem, 8.2vw, 8.75rem); line-height: .87; letter-spacing: -.075em; font-weight: 580; }
+.eyebrow { font: 600 .69rem/1 var(--font-mono); letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+.section-title { font-size: clamp(2.5rem, 5.4vw, 5.9rem); line-height: .96; letter-spacing: -.06em; font-weight: 560; }
+.section-copy { max-width: 650px; font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.65; color: var(--muted); }
+.mono { font-family: var(--font-mono), ui-monospace, monospace; }

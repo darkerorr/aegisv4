@@ -1,0 +1,24 @@
+---
+title: Desktop troubleshooting
+description: Diagnose startup, WebView2, local runtime and installation failures.
+group: Desktop
+status: beta
+updated: 2026-07-23
+keywords: startup, webview2, smartscreen, terminal, ollama
+---
+
+## Window does not appear
+
+Check Windows Event Viewer and Aegis diagnostics before reinstalling. Confirm that WebView2 is available and that security software has not quarantined the executable.
+
+## SmartScreen warning
+
+The current development build is not signed. Verify the SHA-256 value against the Download manifest. Cancel installation if the source or checksum is uncertain.
+
+## Local models are offline
+
+Ollama normally listens on `127.0.0.1:11434`; LM Studio commonly exposes an OpenAI-compatible server on `127.0.0.1:1234/v1`. Start the runtime and refresh Models.
+
+## Terminal appears
+
+The installed Tauri application should be launched from its shortcut. Batch launchers are development tools and are not required for normal installed use.

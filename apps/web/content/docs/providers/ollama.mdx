@@ -1,0 +1,20 @@
+---
+title: Use Ollama
+description: Start the local Ollama runtime and expose models to Aegis.
+group: Providers
+status: stable
+updated: 2026-07-23
+keywords: ollama, local, 11434, model
+---
+
+## Start Ollama
+
+Install Ollama from its official distribution, then start the runtime. Aegis expects the local tags endpoint at `http://127.0.0.1:11434/api/tags` by default.
+
+## Add a model
+
+Pull a model with Ollama's own CLI, then refresh Models in Aegis. The exact disk and memory requirement depends on the selected model and quantization.
+
+## Privacy boundary
+
+Requests stay within the configured Ollama endpoint path. If you point the provider at another machine, that machine becomes part of the trust boundary.

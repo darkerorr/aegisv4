@@ -1,0 +1,303 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                      String                   @id @default(cuid())
+  email                   String                   @unique
+  displayName             String?
+  avatarUrl               String?
+  preferencesJson         String?
+  passwordHash            String
+  emailVerifiedAt         DateTime?
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  sessions                Session[]
+  devices                 Device[]
+  deviceCodes             DeviceCode[]
+  emailVerificationTokens EmailVerificationToken[]
+  passwordResetTokens     PasswordResetToken[]
+  providers               Provider[]
+  conversations           Conversation[]
+  integrationAccounts     IntegrationAccount[]
+  oauthLinkSessions       OAuthLinkSession[]
+  integrationAuditEvents  IntegrationAuditEvent[]
+  attachments             Attachment[]
+  projects                Project[]
+  workSessions            WorkSession[]
+}
+
+model Session {
+  id                String    @id @default(cuid())
+  tokenHash         String    @unique
+  refreshTokenHash  String?   @unique
+  expiresAt         DateTime
+  refreshExpiresAt  DateTime?
+  createdAt         DateTime  @default(now())
+  lastSeenAt        DateTime  @default(now())
+  deviceName        String?
+  ipAddress         String?
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+  @@index([refreshTokenHash])
+}
+
+model Device {
+  id         String   @id @default(cuid())
+  name       String
+  type       String   @default("desktop")
+  lastSeenAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, type])
+}
+
+model DeviceCode {
+  id             String    @id @default(cuid())
+  deviceCodeHash String    @unique
+  userCode       String    @unique
+  status         String    @default("pending")
+  expiresAt      DateTime
+  approvedAt     DateTime?
+  consumedAt     DateTime?
+  userId         String?
+  user           User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([status, expiresAt])
+}
+
+model EmailVerificationToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  expiresAt DateTime
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  expiresAt DateTime
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Provider {
+  id            String         @id @default(cuid())
+  providerKey   String
+  kind          String
+  name          String
+  baseUrl       String
+  apiKey        String?
+  defaultModel  String?
+  optionsJson   String?
+  active        Boolean        @default(true)
+  userId        String
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  models        Model[]
+  conversations Conversation[]
+
+  @@unique([userId, providerKey])
+  @@index([userId])
+}
+
+model Model {
+  id            String   @id @default(cuid())
+  modelName     String
+  type          String   @default("chat")
+  active        Boolean  @default(true)
+  contextLength Int?
+  metadataJson  String?
+  providerId    String
+  provider      Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, modelName])
+  @@index([providerId])
+}
+
+model Conversation {
+  id         String    @id @default(cuid())
+  title      String
+  userId     String
+  providerId String?
+  model      String
+  archivedAt DateTime?
+  pinnedAt   DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider   Provider? @relation(fields: [providerId], references: [id], onDelete: SetNull)
+  messages   Message[]
+  attachments Attachment[]
+  projectId  String?
+  project    Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  @@index([userId, updatedAt])
+  @@index([userId, pinnedAt])
+  @@index([userId, archivedAt])
+  @@index([projectId])
+}
+
+model Project {
+  id                 String         @id @default(cuid())
+  name               String
+  description        String?
+  color              String         @default("neutral")
+  defaultModel       String?
+  instructions       String?
+  githubRepository   String?
+  toolsJson          String         @default("[]")
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  userId             String
+  user               User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversations      Conversation[]
+  workSessions       WorkSession[]
+
+  @@index([userId, updatedAt])
+}
+
+/** A work-mode session: a named, server-persisted chat between the user and
+ * the Local Agent, optionally grouped under a Project. Runs are stored as JSON
+ * (prompt/delta/activity/changed-files) so history survives across browsers. */
+model WorkSession {
+  id          String    @id @default(cuid())
+  title       String    @default("Nouvelle session")
+  status      String    @default("active")
+  workspaceId String?
+  providerId  String?
+  model       String?
+  messages    Json?
+  projectId   String?
+  userId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project     Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  @@index([userId, updatedAt])
+  @@index([projectId])
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  role           String
+  content        String
+  status         String       @default("completed")
+  errorText      String?
+  generationId   String?
+  createdAt      DateTime     @default(now())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  attachments    Attachment[]
+
+  @@index([conversationId, createdAt])
+  @@index([conversationId, role, status])
+}
+
+model Attachment {
+  id             String        @id @default(cuid())
+  name           String
+  mimeType       String
+  size           Int
+  storagePath    String
+  status         String        @default("ready")
+  createdAt      DateTime      @default(now())
+  userId         String
+  conversationId String?
+  messageId      String?
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation   Conversation? @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  message        Message?      @relation(fields: [messageId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([conversationId])
+  @@index([messageId])
+}
+
+model IntegrationAccount {
+  id                    String                  @id @default(cuid())
+  userId                String
+  provider              String
+  providerAccountId     String
+  email                 String?
+  displayName           String?
+  avatarUrl             String?
+  accessTokenEncrypted  String?
+  refreshTokenEncrypted String?
+  tokenExpiresAt        DateTime?
+  grantedScopes         String                  @default("[]")
+  status                String                  @default("connected")
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  lastUsedAt            DateTime?
+  user                  User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  permissions           IntegrationPermission[]
+  auditEvents           IntegrationAuditEvent[]
+
+  @@unique([userId, provider, providerAccountId])
+  @@unique([provider, providerAccountId])
+  @@index([userId, provider, status])
+}
+
+model OAuthLinkSession {
+  id              String    @id @default(cuid())
+  userId          String
+  provider        String
+  connectionId    String    @unique
+  stateHash       String    @unique
+  returnTarget    String    @default("web")
+  requestedScopes String    @default("[]")
+  status          String    @default("pending")
+  errorCode       String?
+  expiresAt       DateTime
+  createdAt       DateTime  @default(now())
+  completedAt     DateTime?
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, provider, status])
+  @@index([stateHash, expiresAt])
+}
+
+model IntegrationPermission {
+  id        String             @id @default(cuid())
+  accountId String
+  scope     String
+  status    String             @default("granted")
+  grantedAt DateTime           @default(now())
+  revokedAt DateTime?
+  account   IntegrationAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@unique([accountId, scope])
+  @@index([accountId, status])
+}
+
+model IntegrationAuditEvent {
+  id           String              @id @default(cuid())
+  userId       String
+  accountId    String?
+  provider     String
+  action       String
+  outcome      String
+  metadataJson String?
+  createdAt    DateTime            @default(now())
+  user         User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account      IntegrationAccount? @relation(fields: [accountId], references: [id], onDelete: SetNull)
+
+  @@index([userId, provider, createdAt])
+  @@index([accountId])
+}

@@ -1,0 +1,47 @@
+import { Command } from "commander";
+import type { AppContext } from "../core/appContext.js";
+import { registerAgentCommand } from "./commands/agent.js";
+import { registerAnalyzeCommand } from "./commands/analyze.js";
+import { registerChatCommand } from "./commands/chat.js";
+import { registerCodeCommand } from "./commands/code.js";
+import { registerConfigCommand } from "./commands/config.js";
+import { registerDoctorCommand } from "./commands/doctor.js";
+import { registerExportCommand } from "./commands/export.js";
+import { registerHistoryCommand } from "./commands/history.js";
+import { registerInitCommand } from "./commands/init.js";
+import { registerModelsCommand } from "./commands/models.js";
+import { registerPromptCommand } from "./commands/prompt.js";
+import { registerProvidersCommand } from "./commands/providers.js";
+import { registerShellCommand } from "./commands/shell.js";
+import { registerSetupCommand } from "./commands/setup.js";
+import { registerSummarizeCommand } from "./commands/summarize.js";
+import { registerResetConfigCommand } from "./commands/resetConfig.js";
+import { registerUninstallCommand } from "./commands/uninstall.js";
+import { registerUpdateCommand } from "./commands/update.js";
+import { registerUpdateModelsCommand } from "./commands/updateModels.js";
+import { registerSearchCommand } from "./commands/search.js";
+import { registerVersionCommand } from "./commands/version.js";
+
+export function registerCommands(program: Command, context: AppContext): void {
+  registerInitCommand(program, context);
+  registerSetupCommand(program, context);
+  registerSearchCommand(program, context);
+  registerChatCommand(program, context);
+  registerCodeCommand(program, context);
+  registerAnalyzeCommand(program, context);
+  registerSummarizeCommand(program, context);
+  registerModelsCommand(program, context);
+  registerProvidersCommand(program, context);
+  registerConfigCommand(program, context);
+  registerPromptCommand(program, context);
+  registerAgentCommand(program, context);
+  registerDoctorCommand(program, context);
+  registerHistoryCommand(program, context);
+  registerExportCommand(program, context);
+  registerShellCommand(program, context);
+  registerUpdateModelsCommand(program, context);
+  registerVersionCommand(program);
+  registerResetConfigCommand(program);
+  registerUninstallCommand(program);
+  registerUpdateCommand(program);
+}

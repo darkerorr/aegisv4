@@ -1,0 +1,25 @@
+---
+title: CLI commands
+description: Commands registered by the current Aegis command-line source.
+group: CLI
+status: stable
+updated: 2026-07-23
+keywords: doctor, models, providers, chat, commands
+---
+
+## Essential commands
+
+- `aegis --version` prints the CLI version.
+- `aegis doctor` checks local configuration and runtime dependencies.
+- `aegis models` lists configured models.
+- `aegis providers` works with configured provider definitions.
+- `aegis chat` starts a chat command flow.
+- `aegis` starts the interactive session and runs setup when no config exists.
+
+## Project commands
+
+The source also registers `init`, `search`, `code`, `analyze`, `summarize`, `history`, `export`, `shell` and agent-related commands. Use `aegis --help` for the exact options supported by the installed version.
+
+## Debug output
+
+Pass `--debug` only when diagnosing a failure. Review output before sharing it because local paths and configuration details may be present.

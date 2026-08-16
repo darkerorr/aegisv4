@@ -1,0 +1,20 @@
+---
+title: Local versus cloud processing
+description: Follow the data path created by the provider you select.
+group: Privacy
+status: stable
+updated: 2026-07-23
+keywords: privacy, local, cloud, provider, data flow
+---
+
+## Local model
+
+Your prompt travels from the Aegis client through the configured Aegis path to the local runtime endpoint. A remote machine configured as a local-compatible endpoint is still remote in practical terms.
+
+## Cloud model
+
+The request content needed for generation is sent to the selected cloud provider. Provider terms, retention and processing locations can apply.
+
+## Connected data
+
+When data from Gmail, Drive or another connector is used with a cloud model, the selected data may become part of the model request. Connecting a service and using its data are separate events.

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T01:04:22.744Z",
+  "current": {
+    "version": "0.3.0",
+    "releasedAt": "2026-07-20T00:34:58.698Z",
+    "channel": "development",
+    "notes": [
+      "Windows x64 Desktop build produced from the current Tauri workspace.",
+      "The available installers are development artifacts and are not code-signed."
+    ],
+    "platforms": {
+      "windows-x64": {
+        "recommended": "nsis",
+        "artifacts": {
+          "nsis": {
+            "status": "available",
+            "installerType": "NSIS",
+            "filename": "Aegis App_0.3.0_x64-setup.exe",
+            "architecture": "x64",
+            "sizeBytes": 3897939,
+            "sha256": "bd13dc73fbb721aff9a83ea0ab4cd848a11bea207346676b8afae1a6403484e9",
+            "signed": false,
+            "downloadUrl": "/releases/0.3.0/Aegis%20App_0.3.0_x64-setup.exe",
+            "builtAt": "2026-07-20T00:34:58.698Z"
+          },
+          "msi": {
+            "status": "available",
+            "installerType": "MSI",
+            "filename": "Aegis App_0.3.0_x64_en-US.msi",
+            "architecture": "x64",
+            "sizeBytes": 5038080,
+            "sha256": "ae47bc7a965a7ce53f9978546708b8e83652630b9722c041250892b39bca4b74",
+            "signed": false,
+            "downloadUrl": "/releases/0.3.0/Aegis%20App_0.3.0_x64_en-US.msi",
+            "builtAt": "2026-07-20T00:34:53.991Z"
+          },
+          "portable": {
+            "status": "local-build-only",
+            "installerType": "Portable development executable",
+            "filename": "aegis-app.exe",
+            "architecture": "x64",
+            "sizeBytes": 11454976,
+            "sha256": "c7286f41a73d7d717a70b6dfac6c43d935f99cdf23b4752dd2cd9e8a1a856349",
+            "signed": false,
+            "downloadUrl": null,
+            "builtAt": "2026-07-20T00:34:58.728Z"
+          }
+        }
+      }
+    }
+  },
+  "previous": []
+}

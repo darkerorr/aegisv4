@@ -1,0 +1,1 @@
+export const queryKeys = { me: ["me"] as const, conversations: ["conversations"] as const, models: ["models"] as const, providers: ["providers"] as const, integrations: ["integrations"] as const, gmail: ["gmail"] as const, drive: ["drive"] as const };

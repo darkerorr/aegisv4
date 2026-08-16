@@ -1,0 +1,8 @@
+﻿apps/api/prisma/dev.db
+apps/api/.data/
+logs/
+node_modules/
+.next/
+.next-prod/
+dist/
+*.log

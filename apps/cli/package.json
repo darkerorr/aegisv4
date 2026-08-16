@@ -1,0 +1,8 @@
+{
+  "name": "@aegis/cli",
+  "version": "0.3.0",
+  "private": false,
+  "type": "module",
+  "bin": { "aegis": "../../dist/index.js" },
+  "scripts": { "build": "node -e \"console.log('CLI compatibility facade uses the root build:cli output')\"", "dev": "node --import tsx ../../src/index.ts" }
+}

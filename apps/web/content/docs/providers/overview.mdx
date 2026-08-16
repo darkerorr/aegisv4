@@ -1,0 +1,20 @@
+---
+title: Provider overview
+description: Compare local runtimes, cloud providers and custom compatible endpoints.
+group: Providers
+status: beta
+updated: 2026-07-23
+keywords: provider, local, cloud, credential
+---
+
+## Provider types
+
+Ollama and LM Studio are device-local runtimes when their endpoints point to your machine. NVIDIA and OpenRouter are cloud providers. A custom endpoint inherits the security and data-handling behavior of the service you configure.
+
+## Credentials
+
+Provider secrets belong on the server or intended device boundary, never in `NEXT_PUBLIC_*`, URLs or chat messages. The UI should expose only whether a secret is configured.
+
+## Availability
+
+A configured provider is not necessarily healthy. Refresh its model list and test a real model before relying on it.

@@ -1,0 +1,1 @@
+import {test,expect}from"@playwright/test";import{mockApi}from"./helpers";test("models show API data",async({page})=>{await mockApi(page);await page.goto("/workspace/models");await expect(page.getByText("DeepSeek R1")).toBeVisible();await page.screenshot({path:"test-results/screenshots/models.png"})})

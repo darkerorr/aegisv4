@@ -1,0 +1,1 @@
+import { FolderKanban } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { ProjectsView } from "@/features/projects/projects-view";export default function Projects(){return <WorkspacePage title="Projects" description="Long-lived context for related conversations and files." icon={FolderKanban}><ProjectsView/></WorkspacePage>}

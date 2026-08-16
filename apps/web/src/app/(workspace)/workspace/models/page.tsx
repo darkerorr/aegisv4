@@ -1,0 +1,1 @@
+import { Cpu } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { ModelsCatalog } from "@/features/models/models-catalog";export default function ModelsPage(){return <WorkspacePage title="Models" description="Available intelligence from your configured providers." icon={Cpu}><ModelsCatalog/></WorkspacePage>}

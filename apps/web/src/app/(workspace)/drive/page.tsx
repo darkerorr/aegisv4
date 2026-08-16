@@ -1,0 +1,1 @@
+import { HardDrive } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { DriveView } from "@/features/drive/drive-view";export default function DrivePage(){return <WorkspacePage title="Drive" description="Find and inspect file metadata from your permitted Drive scope." icon={HardDrive}><DriveView/></WorkspacePage>}

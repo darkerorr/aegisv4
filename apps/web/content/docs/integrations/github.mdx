@@ -1,0 +1,20 @@
+---
+title: GitHub integration
+description: Understand the current repository connection surface and its limits.
+group: Integrations
+status: experimental
+updated: 2026-07-23
+keywords: github, repositories, issues, pull requests
+---
+
+## Availability
+
+The Web includes a GitHub surface, but feature availability depends on a real authenticated connector. A generic page state must not be presented as a connected repository.
+
+## Permissions
+
+Request the narrowest repository scopes needed. Reading repository metadata and writing issues are different risk levels; write actions require explicit confirmation.
+
+## Missing data
+
+If repositories or issues do not appear, verify the connector and account permissions rather than asking the model to guess repository state.

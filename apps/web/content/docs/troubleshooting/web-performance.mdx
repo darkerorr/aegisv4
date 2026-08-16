@@ -1,0 +1,20 @@
+---
+title: Web routes compile slowly
+description: Separate on-demand development compilation from production-like local use.
+group: Troubleshooting
+status: stable
+updated: 2026-07-23
+keywords: next dev, next start, build, compile
+---
+
+## Cause
+
+`next dev` compiles routes on first visit. Messages such as `Compiling /gmail` are normal in development but unsuitable for daily production-like use.
+
+## Daily mode
+
+Use `start.bat`. It checks the source fingerprint, runs `next build` only when needed and starts the Web with `next start`.
+
+## Development mode
+
+Use `start-dev.bat` for hot reload. Run the optional route prewarm script after the server is ready when you want the main routes compiled before manual navigation.

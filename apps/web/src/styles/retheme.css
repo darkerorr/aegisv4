@@ -1,0 +1,883 @@
+/* ============================================================
+   AEGIS — NOIR & ROUGE RETHEME
+   Final authoritative layer. Wins the cascade.
+   ------------------------------------------------------------
+   Palette : pure black surfaces, white/grey text, Aegis red
+   accent (#E5342B). Red is an accent, never a large surface.
+   Green (#4ADE80) reserved for success states.
+   ============================================================ */
+
+/* ---------- Selection ---------- */
+::selection { background: #e5342b; color: #fff; }
+
+/* ---------- AI accent defaults : overridden per-model on .v3-chat ---------- */
+:root {
+  --model-accent: #e5342b;
+  --model-accent-deep: #b8231b;
+  --model-accent-soft: rgba(229, 52, 43, 0.16);
+  --model-accent-soft-2: rgba(229, 52, 43, 0.06);
+  --model-accent-mid: rgba(229, 52, 43, 0.3);
+  --model-accent-strong: rgba(229, 52, 43, 0.5);
+  --model-accent-glow: rgba(229, 52, 43, 0.4);
+}
+
+/* ---------- Ambient canvas : red-tinted orbs ---------- */
+.v3-canvas__orb--blue { background: radial-gradient(circle, rgba(229, 52, 43, 0.22), transparent 68%); }
+.v3-canvas__orb--indigo { background: radial-gradient(circle, rgba(229, 52, 43, 0.15), transparent 66%); }
+.v3-canvas__orb--violet { background: radial-gradient(circle, rgba(190, 70, 55, 0.1), transparent 66%); }
+.v3-canvas__orb--ember { background: radial-gradient(circle, rgba(229, 52, 43, 0.1), transparent 60%); }
+.orb-one { background: rgba(229, 52, 43, 0.16); }
+.orb-two { background: rgba(190, 70, 55, 0.12); }
+
+/* ---------- Primary CTAs : red ---------- */
+.v3-new-chat {
+  background: linear-gradient(135deg, #e5342b, #b8231b) !important;
+  color: #fff !important;
+  box-shadow: 0 14px 38px rgba(229, 52, 43, 0.3), inset 0 1px rgba(255, 255, 255, 0.18) !important;
+}
+.v3-new-chat:hover { box-shadow: 0 20px 52px rgba(229, 52, 43, 0.38) !important; }
+.v3-new-chat:active { box-shadow: 0 10px 26px rgba(229, 52, 43, 0.28) !important; }
+.v3-new-chat kbd {
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.new-chat {
+  background: linear-gradient(135deg, #e5342b, #b8231b) !important;
+  color: #fff !important;
+  box-shadow: 0 16px 40px rgba(229, 52, 43, 0.25), inset 0 1px rgba(255, 255, 255, 0.18) !important;
+}
+.new-chat:hover { box-shadow: 0 22px 55px rgba(229, 52, 43, 0.32) !important; }
+.new-chat kbd { background: rgba(0, 0, 0, 0.2) !important; color: rgba(255, 255, 255, 0.75) !important; }
+
+.v3-btn--primary, .v4-btn--primary, .rb-btn--primary, .aegis-btn--primary {
+  background: linear-gradient(135deg, #e5342b, #b8231b) !important;
+  color: #fff !important;
+  border-color: rgba(229, 52, 43, 0.6) !important;
+  box-shadow: 0 10px 26px rgba(229, 52, 43, 0.3), inset 0 1px rgba(255, 255, 255, 0.18) !important;
+}
+.v3-btn--primary:hover, .v4-btn--primary:hover, .rb-btn--primary:hover, .aegis-btn--primary:hover {
+  box-shadow: 0 14px 34px rgba(229, 52, 43, 0.42), 0 0 34px rgba(229, 52, 43, 0.16), inset 0 1px rgba(255, 255, 255, 0.18) !important;
+}
+.aegis-composer-btn--send {
+  background: linear-gradient(135deg, #e5342b, #b8231b) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 26px rgba(229, 52, 43, 0.3) !important;
+}
+
+/* ---------- Active filters / segmented / tabs : red ---------- */
+.v3-toolbar__filter[data-active="true"],
+.filter-row button[data-active="true"],
+.segmented button[data-active="true"],
+.tool-mode button[data-active="true"],
+.aegis-models__filters > button.is-active {
+  background: linear-gradient(135deg, #e5342b, #b8231b) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+.aegis-pill-filter[data-active="true"] {
+  background: linear-gradient(135deg, #e5342b, #b8231b) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 22px rgba(229, 52, 43, 0.28) !important;
+}
+.v4-cal__views button[data-active="true"] {
+  background: linear-gradient(135deg, #e5342b, #b8231b) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* ---------- Calendar : today in red ---------- */
+.v3-cal__day[data-today="true"] { border-color: rgba(229, 52, 43, 0.4) !important; box-shadow: inset 0 0 0 1px rgba(229, 52, 43, 0.2) !important; }
+.v3-cal__day[data-today="true"] .v3-cal__day-num,
+.v4-cal__cell.is-today .v4-cal__cell-date,
+.rb-cal__week-head span.is-today i,
+.rb-cal__month-cell.is-today .rb-cal__month-day {
+  background: linear-gradient(135deg, #e5342b, #b8231b) !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+.v4-cal__cell.is-today { border-color: rgba(229, 52, 43, 0.32) !important; background: rgba(229, 52, 43, 0.05) !important; }
+.v4-cal__week-head.is-today { color: #ff6b63 !important; }
+
+/* ---------- Navigation : active item red ---------- */
+.v3-nav-item[data-active="true"] {
+  border-color: rgba(229, 52, 43, 0.3) !important;
+  background: linear-gradient(90deg, rgba(229, 52, 43, 0.16), rgba(229, 52, 43, 0.03)) !important;
+}
+.v3-nav-item[data-active="true"] .v3-nav-item__icon { color: #ff6b63 !important; filter: drop-shadow(0 0 8px rgba(229, 52, 43, 0.5)) !important; }
+.v3-nav-item:hover .v3-nav-item__icon { color: var(--v3-accent); filter: drop-shadow(0 0 6px rgba(229, 52, 43, 0.45)); }
+.v3-nav-item__indicator { box-shadow: 0 0 10px rgba(229, 52, 43, 0.7) !important; }
+.v3-rail__item[data-active="true"] {
+  border-color: rgba(229, 52, 43, 0.26) !important;
+  background: linear-gradient(90deg, rgba(229, 52, 43, 0.12), rgba(229, 52, 43, 0.02)) !important;
+}
+.workspace-nav-item[data-active="true"] {
+  border-color: rgba(229, 52, 43, 0.28) !important;
+  background: linear-gradient(90deg, rgba(229, 52, 43, 0.14), rgba(229, 52, 43, 0.03)) !important;
+}
+
+/* ---------- Icon buttons : active / accent hovers ---------- */
+.v3-icon-btn[data-active="true"], .aegis-icon-button[data-active="true"] {
+  color: #fff !important;
+  background: rgba(229, 52, 43, 0.14) !important;
+  border-color: rgba(229, 52, 43, 0.32) !important;
+  box-shadow: 0 0 16px rgba(229, 52, 43, 0.16) !important;
+}
+.v3-icon-btn[data-accent="cyan"]:hover, .v3-icon-btn[data-accent="violet"]:hover, .v3-icon-btn[data-accent="ember"]:hover {
+  color: #ff8a82 !important;
+  background: rgba(229, 52, 43, 0.12) !important;
+  border-color: rgba(229, 52, 43, 0.3) !important;
+  box-shadow: 0 0 18px rgba(229, 52, 43, 0.16) !important;
+}
+.v3-icon-btn[data-accent="success"]:hover {
+  color: #7cef9f !important;
+  background: rgba(74, 222, 128, 0.12) !important;
+  border-color: rgba(74, 222, 128, 0.3) !important;
+}
+.v3-icon-btn[data-accent="danger"]:hover {
+  color: #ff8a82 !important;
+  background: rgba(229, 52, 43, 0.12) !important;
+  border-color: rgba(229, 52, 43, 0.3) !important;
+}
+
+/* ---------- Chat : user bubble (AI-tinted surface) ---------- */
+.v3-msg__bubble, .v3-msg--user .v3-msg__bubble {
+  background: linear-gradient(135deg, var(--model-accent-soft), var(--model-accent-soft-2)) !important;
+  color: #f5f5f5 !important;
+  border: 1px solid var(--model-accent-mid) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
+}
+.v3-msg__bubble-meta time { color: rgba(245, 245, 245, 0.45) !important; }
+.user-message {
+  background: linear-gradient(135deg, rgba(229, 52, 43, 0.18), rgba(229, 52, 43, 0.08)) !important;
+  color: #f5f5f5 !important;
+  border: 1px solid rgba(229, 52, 43, 0.3) !important;
+}
+
+/* ---------- Chat : assistant avatar & live indicators (AI-tinted) ---------- */
+.v3-msg__avatar { background: linear-gradient(135deg, var(--model-accent), var(--model-accent-deep)) !important; color: #fff !important; box-shadow: 0 0 14px var(--model-accent-mid) !important; }
+.v3-msg__live i, .v3-tool-badge i, .v3-loading__dots i, .v3-stream-caret {
+  background: var(--model-accent) !important;
+  box-shadow: 0 0 9px var(--model-accent-glow) !important;
+}
+.v3-topbar__live { color: var(--model-accent); }
+.v3-topbar__live svg { color: var(--model-accent); }
+
+/* ---------- Chat : tool badges states ---------- */
+.v3-tool-badge.is-done {
+  border-color: rgba(74, 222, 128, 0.3) !important;
+  background: rgba(74, 222, 128, 0.08) !important;
+  color: #7cef9f !important;
+}
+.v3-tool-badge.is-done i { background: #4ade80 !important; box-shadow: 0 0 8px rgba(74, 222, 128, 0.7) !important; animation: none; }
+.v3-tool-badge.is-failed {
+  border-color: rgba(229, 52, 43, 0.3) !important;
+  background: rgba(229, 52, 43, 0.06) !important;
+  color: #ff6b63 !important;
+}
+.v3-tool-badge.is-failed i { background: #e5342b !important; box-shadow: none; animation: none; }
+
+/* ---------- Composer : send AI-tinted, stop red-tinted, streaming ring ---------- */
+.v3-composer__send {
+  background: linear-gradient(135deg, var(--model-accent), var(--model-accent-deep)) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px var(--model-accent-mid), inset 0 1px rgba(255, 255, 255, 0.18) !important;
+}
+.v3-composer__send:hover:not(:disabled) {
+  box-shadow: 0 10px 26px var(--model-accent-strong), 0 0 22px var(--model-accent-glow) !important;
+}
+.v3-composer__stop {
+  border-color: rgba(229, 52, 43, 0.35) !important;
+  background: rgba(229, 52, 43, 0.1) !important;
+  color: #ff8a82 !important;
+}
+.v3-composer__stop:hover { background: rgba(229, 52, 43, 0.18) !important; }
+.v3-composer[data-streaming="true"] { border-color: rgba(229, 52, 43, 0.42) !important; }
+.v3-composer:focus-within {
+  border-color: rgba(229, 52, 43, 0.42) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06), 0 26px 90px rgba(0, 0, 0, 0.5), 0 0 64px rgba(229, 52, 43, 0.1) !important;
+}
+
+/* ---------- Markdown : red links & blockquote ---------- */
+.v3-md a, .v3-md-link { color: #ff6b63; border-bottom-color: rgba(229, 52, 43, 0.35) !important; }
+.v3-md a:hover, .v3-md-link:hover { border-bottom-color: #ff6b63 !important; }
+.v3-md blockquote { border-left-color: #e5342b !important; }
+
+/* ---------- Status dots : online red / offline dim / checking amber ---------- */
+.v3-sidebar__status-pill[data-state="online"] i,
+.v3-conn__row[data-state="ok"] > i,
+.v3-status[data-state="online"] i,
+.v3-home__dot[data-on="true"],
+.v3-home__dot.is-on,
+.aegis-dot[data-on="true"] {
+  background: #e5342b !important;
+  box-shadow: 0 0 8px rgba(229, 52, 43, 0.7) !important;
+}
+.v3-sidebar__status-pill[data-state="offline"] i,
+.v3-conn__row[data-state="off"] > i,
+.v3-status[data-state="offline"] i,
+.aegis-dot[data-on="false"] {
+  background: #6b6b6b !important;
+  box-shadow: none !important;
+}
+.v3-sidebar__status-pill[data-state="checking"] i,
+.v3-conn__row[data-state="check"] > i,
+.v3-status[data-state="checking"] i { background: #d4b163 !important; }
+.v3-sidebar__status-pill[data-state="online"] { border-color: rgba(229, 52, 43, 0.25) !important; background: rgba(229, 52, 43, 0.05) !important; }
+.v3-sidebar__status-pill[data-state="offline"] { border-color: rgba(160, 160, 160, 0.2) !important; background: rgba(160, 160, 160, 0.04) !important; }
+
+/* ---------- Hero titles : red gradient ---------- */
+.v3-home__title-grad {
+  background: linear-gradient(100deg, #ff6b63 10%, #e5342b 55%, #8f1a14 95%) !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.chat-empty h2 {
+  background: linear-gradient(180deg, #f5f5f5, #ff6b63 55%, #e5342b) !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Brand / identity : red-tinted glows ---------- */
+.v3-sidebar__brand-logo::after { background: radial-gradient(circle, rgba(229, 52, 43, 0.3), transparent 70%); }
+.v3-sidebar__avatar { background: linear-gradient(135deg, rgba(229, 52, 43, 0.4), rgba(140, 30, 24, 0.3)); box-shadow: inset 0 1px rgba(255, 255, 255, 0.18), 0 0 16px rgba(229, 52, 43, 0.24); }
+.v3-sidebar__model { box-shadow: inset 0 1px rgba(255, 255, 255, 0.06), 0 0 42px rgba(229, 52, 43, 0.06); }
+
+/* ---------- Auth / marketing ambient : red-tinted ---------- */
+.auth-layout {
+  background: radial-gradient(circle at 20% 12%, rgba(229, 52, 43, 0.14), transparent 30%),
+    radial-gradient(circle at 90% 24%, rgba(190, 70, 55, 0.12), transparent 28%),
+    #040404;
+}
+.aegis-premium-bg {
+  background: radial-gradient(circle at 18% 14%, rgba(229, 52, 43, 0.12), transparent 28%),
+    radial-gradient(circle at 85% 2%, rgba(190, 70, 55, 0.1), transparent 32%),
+    linear-gradient(180deg, #050505, #0a0a0a 45%, #050505);
+}
+
+/* ---------- Models : family badge red ---------- */
+.aegis-model-card__family {
+  color: #ff6b63 !important;
+  border-color: rgba(229, 52, 43, 0.3) !important;
+  background: rgba(229, 52, 43, 0.08) !important;
+}
+
+/* ---------- Chips : red-tinted variants ---------- */
+.v3-chip--cyan, .v3-chip--violet, .v3-chip--ember { color: #ff8a82; border-color: rgba(229, 52, 43, 0.28); background: rgba(229, 52, 43, 0.08); }
+.v3-chip--green { color: #7cef9f; border-color: rgba(74, 222, 128, 0.28); background: rgba(74, 222, 128, 0.08); }
+
+/* ---------- Focus rings on search surfaces : red ---------- */
+.v3-toolbar__search:focus-within,
+.v3-rail__search:focus-within,
+.aegis-toolbar-search:focus-within {
+  border-color: rgba(229, 52, 43, 0.42) !important;
+  box-shadow: 0 0 0 3px rgba(229, 52, 43, 0.08) !important;
+}
+.aegis-field:focus { border-color: rgba(229, 52, 43, 0.45); box-shadow: 0 0 0 3px rgba(229, 52, 43, 0.08); }
+
+/* ---------- Focus rings : red instead of white ---------- */
+:focus-visible { outline-color: rgba(229, 52, 43, 0.8) !important; }
+
+/* ---------- Home hero : accent word red + ambient red glow ---------- */
+.v3-home__title-accent {
+  background: linear-gradient(100deg, #ff6b63 8%, #e5342b 52%, #8f1a14 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.v3-home { position: relative; }
+.v3-home::before {
+  content: "";
+  position: absolute;
+  inset: -8% -35% auto -35%;
+  height: 480px;
+  background: radial-gradient(circle at 50% 0%, rgba(229, 52, 43, 0.1), transparent 62%);
+  pointer-events: none;
+  z-index: 0;
+}
+.v3-home > * { position: relative; z-index: 1; }
+
+/* ---------- Cards : hover / selected border red ---------- */
+.aegis-card:hover, .v3-card:hover, .rb-card:hover, .aegis-model-card:hover,
+.aegis-provider-card:hover, .aegis-suggest-card:hover, .connection-card:hover {
+  border-color: rgba(229, 52, 43, 0.4) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06), 0 22px 60px rgba(0, 0, 0, 0.32), 0 0 26px rgba(229, 52, 43, 0.12) !important;
+}
+
+/* ---------- Settings grid cards : hover border red ---------- */
+.aegis-settings-grid > a:hover, .aegis-settings-grid > button:hover {
+  border-color: rgba(229, 52, 43, 0.4) !important;
+  box-shadow: 0 0 26px rgba(229, 52, 43, 0.16) !important;
+}
+
+/* ---------- Conversation list : active item red tint ---------- */
+.aegis-conv-item[data-active="true"] {
+  border-color: rgba(229, 52, 43, 0.32) !important;
+  background: linear-gradient(90deg, rgba(229, 52, 43, 0.12), rgba(229, 52, 43, 0.02)) !important;
+}
+.aegis-conv-item[data-active="true"]::before { background: #e5342b !important; box-shadow: 0 0 8px rgba(229, 52, 43, 0.6) !important; }
+
+/* ---------- Text links in Settings / Account : red (buttons excluded) ---------- */
+.aegis-settings-panel a:not(.aegis-btn), .identity-list a, .session-list a { color: #ff6b63; }
+.aegis-settings-panel a:not(.aegis-btn):hover, .identity-list a:hover, .session-list a:hover { color: #ff8a82; }
+
+/* ---------- Conversation rail : collapsible history ---------- */
+.v3-rail__title-row { display: flex; align-items: center; gap: 8px; }
+.v3-rail__title-row h2 { margin: 3px 0 0; }
+.v3-rail__collapse {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--v3-faint, #6a6a6a);
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.v3-rail__collapse:hover { color: #ff8a82; background: rgba(229, 52, 43, 0.1); border-color: rgba(229, 52, 43, 0.3); }
+.v3-rail__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 2px;
+  padding: 8px 10px;
+  border: 1px dashed rgba(229, 52, 43, 0.3);
+  border-radius: 10px;
+  background: rgba(229, 52, 43, 0.05);
+  color: #ff8a82;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.v3-rail__more:hover { background: rgba(229, 52, 43, 0.12); border-color: rgba(229, 52, 43, 0.5); }
+
+/* ---------- Conversation rail : fully retractable (frees space) ---------- */
+.v3-workspace:has(.v3-rail[data-collapsed="true"]) { --v3-rail: 52px; }
+.v3-rail[data-collapsed="true"] { overflow: hidden; }
+.v3-rail[data-collapsed="true"] .v3-rail__collapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 12px;
+}
+.v3-rail__expand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 38px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--v3-text-soft, #b5b5b5);
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.v3-rail__expand:hover {
+  color: var(--model-accent, #e5342b);
+  border-color: var(--model-accent-mid, rgba(229, 52, 43, 0.4));
+  background: var(--model-accent-soft, rgba(229, 52, 43, 0.1));
+}
+
+/* ---------- Rail toggle button (chat topbar) ---------- */
+.v3-rail-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border: 1px solid var(--v3-line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--v3-text-soft);
+  cursor: pointer;
+  transition: border-color var(--v3-t-fast) var(--v3-ease), background var(--v3-t-fast) var(--v3-ease), color var(--v3-t-fast) var(--v3-ease);
+}
+.v3-rail-toggle:hover { color: var(--v3-text); background: rgba(255, 255, 255, 0.06); border-color: var(--v3-line-strong); }
+.v3-rail-toggle[aria-pressed="true"] { color: var(--model-accent, #e5342b); border-color: var(--model-accent-mid, rgba(229, 52, 43, 0.3)); background: var(--model-accent-soft-2, rgba(229, 52, 43, 0.06)); }
+@media (max-width: 860px) {
+  .v3-rail-toggle { display: none; }
+}
+
+/* ============================================================
+   CHAT AXIS — conversation and composer share ONE horizontal frame
+   Single source of truth: --v3-chat-max is the conversation
+   column width (the same value the composer panel uses), and
+   --v3-chat-pad is the horizontal gutter used by both the scroll
+   area and the composer dock. Because the message column lives in
+   a frame identical to the composer's frame, both always share the
+   same left edge, right edge, width and center — no offsets.
+   ============================================================ */
+.v3-chat {
+  --v3-chat-max: 700px;
+  --v3-chat-pad: clamp(16px, 4vw, 40px);
+}
+/* The scroll area takes the exact same horizontal padding as the
+   composer dock (v4-premium .v3-composer-dock), so their content
+   boxes match pixel-for-pixel at every viewport width. */
+.v3-chat .v3-chat__scroll,
+.v3-chat .v3-composer-dock {
+  padding-inline: var(--v3-chat-pad);
+}
+/* The conversation column is capped at the composer's max width and
+   centered in that shared frame. Cards run edge-to-edge inside it. */
+.v3-chat .v3-chat__column {
+  width: 100%;
+  max-width: var(--v3-chat-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (max-width: 560px) {
+  .v3-chat .v3-chat__column { padding-inline: 0; }
+}
+
+/* ---------- Chat : assistant bubble anchored LEFT ----------
+   The AI response is a readable, compact card anchored to the LEFT
+   edge of the conversation column — never stretched full width.
+   This forces the card box itself (width / margins / alignment) and
+   every inner block flush left, and wins over any legacy centering
+   rule from earlier layers. */
+.v3-msg--assistant,
+.v3-msg--assistant .v3-msg__card {
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: flex-start;
+  justify-self: stretch;
+  text-align: left;
+  width: min(100%, 640px) !important;
+  max-width: 640px !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+.v3-msg--assistant { width: 100%; }
+.v3-msg--assistant .v3-msg__card .v3-md {
+  width: 100%;
+  text-align: left;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+.v3-msg--assistant .v3-msg__card .v3-md > * {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* ---------- Chat : floating scroll-to-bottom ---------- */
+.v3-chat__footer { position: relative; }
+.v3-scroll-bottom {
+  position: absolute;
+  top: -66px;
+  right: clamp(16px, 4vw, 40px);
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 99px;
+  background: rgba(15, 15, 18, 0.9);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  color: #e8e8e8;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.08), 0 14px 40px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
+}
+.v3-scroll-bottom:hover {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(28, 28, 34, 0.95);
+  color: #fff;
+}
+@media (max-width: 560px) {
+  .v3-scroll-bottom { top: -58px; right: 14px; }
+}
+
+/* ---------- Code blocks : visible copy button ---------- */
+.v3-code__copy {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--v3-text-soft, #b5b5b5);
+  padding: 5px 9px;
+  border-radius: 8px;
+}
+.v3-code__copy em { font-style: normal; }
+.v3-code__copy:hover { color: #fff; border-color: rgba(229, 52, 43, 0.45); background: rgba(229, 52, 43, 0.12); }
+
+/* ============================================================
+   LIQUID GLASS COMPOSER — frosted panel + AI-color glow
+   ============================================================ */
+.v3-composer {
+  position: relative;
+  border: 1px solid var(--model-accent-mid) !important;
+  background:
+    radial-gradient(130% 170% at 50% -30%, var(--model-accent-soft), transparent 55%),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 28%, transparent 46%),
+    linear-gradient(180deg, rgba(30, 30, 35, 0.84), rgba(11, 11, 14, 0.9)) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(1.7) !important;
+  backdrop-filter: blur(36px) saturate(1.7) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 -16px 34px var(--model-accent-soft-2),
+    0 24px 70px rgba(0, 0, 0, 0.5),
+    0 0 36px var(--model-accent-glow) !important;
+}
+.v3-composer::after {
+  content: "";
+  position: absolute;
+  inset: -46px;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 130%, var(--model-accent-glow), transparent 62%);
+  filter: blur(30px);
+  opacity: 0.5;
+  pointer-events: none;
+  animation: v3-glass-breathe 4.5s ease-in-out infinite;
+}
+@keyframes v3-glass-breathe {
+  0%, 100% { opacity: 0.38; }
+  50% { opacity: 0.7; }
+}
+.v3-composer:focus-within {
+  border-color: var(--model-accent-strong) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.18),
+    inset 0 -16px 34px var(--model-accent-soft),
+    0 26px 84px rgba(0, 0, 0, 0.52),
+    0 0 62px var(--model-accent-glow) !important;
+}
+.v3-composer[data-streaming="true"] {
+  border-color: var(--model-accent-strong) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.16),
+    0 24px 70px rgba(0, 0, 0, 0.5),
+    0 0 48px var(--model-accent-glow) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .v3-composer::after { animation: none; opacity: 0.5; }
+}
+
+/* ============================================================
+   AEGIS THINKING MARK — Claude + GPT fusion, breathing logo
+   ============================================================ */
+.aegis-mark {
+  display: inline-grid;
+  place-items: center;
+  line-height: 0;
+  transform-origin: 50% 50%;
+}
+.aegis-mark svg { display: block; }
+.aegis-mark.is-live { animation: aegis-breathe 2.6s ease-in-out infinite; }
+.aegis-mark.is-live .aegis-mark__rays { transform-origin: 24px 24px; animation: aegis-rays 18s linear infinite; }
+.aegis-mark.is-live .aegis-mark__ring { transform-origin: 24px 24px; animation: aegis-ring 9s linear infinite; }
+.aegis-mark.is-live .aegis-mark__inner { transform-origin: 24px 24px; animation: aegis-inner 14s linear infinite; }
+.aegis-mark.is-live .aegis-mark__core { animation: aegis-core 2.6s ease-in-out infinite; }
+@keyframes aegis-breathe {
+  0%, 100% { transform: scale(0.92); }
+  50% { transform: scale(1.08); }
+}
+@keyframes aegis-rays { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes aegis-ring { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes aegis-inner { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+@keyframes aegis-core {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.v3-msg--streaming .v3-msg__avatar {
+  background: linear-gradient(135deg, var(--model-accent), rgba(24, 24, 28, 0.95)) !important;
+  animation: aegis-avatar-pulse 2.6s ease-in-out infinite !important;
+}
+@keyframes aegis-avatar-pulse {
+  0%, 100% { box-shadow: 0 0 10px var(--model-accent-mid), inset 0 0 8px rgba(255, 255, 255, 0.08) !important; }
+  50% { box-shadow: 0 0 24px var(--model-accent-glow), inset 0 0 14px rgba(255, 255, 255, 0.16) !important; }
+}
+
+/* ============================================================
+   REASONING BLOCK — fluorescent thoughts (silver / gold / dark red)
+   ============================================================ */
+.v3-reason {
+  position: relative;
+  margin: 0 0 12px;
+  border: 1px solid rgba(201, 169, 97, 0.3) !important;
+  border-radius: 12px;
+  background:
+    radial-gradient(120% 220% at 18% -40%, rgba(229, 52, 43, 0.16), transparent 58%),
+    radial-gradient(120% 220% at 90% 120%, rgba(216, 188, 110, 0.08), transparent 55%),
+    linear-gradient(180deg, rgba(30, 30, 34, 0.88), rgba(12, 12, 14, 0.94)) !important;
+  box-shadow: 0 0 24px rgba(229, 52, 43, 0.14), inset 0 1px rgba(255, 255, 255, 0.07) !important;
+  overflow: hidden;
+}
+.v3-reason summary { list-style: none; cursor: pointer; }
+.v3-reason summary::-webkit-details-marker { display: none; }
+.v3-reason__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  color: #d8bc6e !important;
+  font: 700 9.5px/1 var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.v3-reason__head svg { color: #e5342b; transition: transform var(--v3-t-fast) var(--v3-ease); }
+.v3-reason[open] .v3-reason__head svg { transform: rotate(180deg); }
+.v3-reason__body {
+  padding: 10px 12px 12px;
+  border-top: 1px solid rgba(229, 52, 43, 0.18) !important;
+  color: transparent !important;
+  background-image: linear-gradient(120deg, #f2f2f2 0%, #c8c8c8 18%, #d8bc6e 38%, #e5342b 54%, #7a0d0d 72%, #c8c8c8 88%, #f2f2f2 100%);
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 0 16px rgba(229, 52, 43, 0.22);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  animation: aegis-fluo 5s linear infinite;
+}
+@keyframes aegis-fluo {
+  from { background-position: 0% 0; }
+  to { background-position: -220% 0; }
+}
+.v3-reason__body::selection { background: rgba(229, 52, 43, 0.4); color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  .aegis-mark.is-live,
+  .aegis-mark.is-live .aegis-mark__rays,
+  .aegis-mark.is-live .aegis-mark__ring,
+  .aegis-mark.is-live .aegis-mark__inner,
+  .v3-msg--streaming .v3-msg__avatar,
+  .v3-reason__body { animation: none !important; }
+}
+
+/* ============================================================
+   MODEL SELECTOR — AI-color liquid glass pill + popover
+   The pill and its popover glow with the selected AI brand color
+   (green logo → green glow, red → red, …). Text stays readable.
+   ============================================================ */
+.aegis-model-pill {
+  position: relative;
+  overflow: hidden;
+  height: 38px;
+  padding: 0 12px 0 5px;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background:
+    radial-gradient(120% 180% at 16% 0%, rgba(var(--pill-accent-rgb, 229, 52, 43), 0.18), transparent 55%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
+    rgba(10, 10, 13, 0.84) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+  backdrop-filter: blur(20px) saturate(1.4) !important;
+  color: #fff !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.09),
+    0 0 0 1px rgba(var(--pill-accent-rgb, 229, 52, 43), 0.14),
+    0 0 24px rgba(var(--pill-accent-rgb, 229, 52, 43), 0.24) !important;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease !important;
+}
+.aegis-model-pill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(var(--pill-accent-rgb, 229, 52, 43), 0.55) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.12),
+    0 0 0 1px rgba(var(--pill-accent-rgb, 229, 52, 43), 0.26),
+    0 0 36px rgba(var(--pill-accent-rgb, 229, 52, 43), 0.42) !important;
+}
+.aegis-model-pill__brand {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  border-color: rgba(var(--pill-accent-rgb, 229, 52, 43), 0.4) !important;
+  background: rgba(var(--pill-accent-rgb, 229, 52, 43), 0.16) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.14),
+    0 0 14px rgba(var(--pill-accent-rgb, 229, 52, 43), 0.42) !important;
+}
+.aegis-model-pill__copy b { color: #fff !important; font-weight: 650; }
+.aegis-model-pill__copy small { color: rgba(255, 255, 255, 0.64) !important; }
+.aegis-model-pill > svg { color: rgba(255, 255, 255, 0.55) !important; }
+
+/* Popover : liquid glass with AI-color edge glow */
+.aegis-model-pop {
+  width: min(92vw, 380px) !important;
+  padding: 10px !important;
+  border: 1px solid rgba(var(--pill-accent-rgb, 229, 52, 43), 0.34) !important;
+  border-radius: 16px !important;
+  background:
+    radial-gradient(140% 130% at 50% 0%, rgba(var(--pill-accent-rgb, 229, 52, 43), 0.13), transparent 56%),
+    linear-gradient(160deg, rgba(28, 28, 33, 0.93), rgba(9, 9, 12, 0.97)) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(1.3) !important;
+  backdrop-filter: blur(30px) saturate(1.3) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.08),
+    0 30px 90px rgba(0, 0, 0, 0.72),
+    0 0 46px rgba(var(--pill-accent-rgb, 229, 52, 43), 0.22) !important;
+}
+.aegis-model-search {
+  height: 36px;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-radius: 10px !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+.aegis-model-option {
+  position: relative;
+  border-radius: 11px !important;
+  padding: 9px 10px !important;
+}
+.aegis-model-option:hover {
+  background: rgba(var(--opt-accent-rgb, 229, 52, 43), 0.09) !important;
+  border-color: rgba(var(--opt-accent-rgb, 229, 52, 43), 0.28) !important;
+}
+.aegis-model-option[data-active="true"] {
+  background: rgba(var(--opt-accent-rgb, 229, 52, 43), 0.15) !important;
+  border-color: rgba(var(--opt-accent-rgb, 229, 52, 43), 0.42) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06), 0 0 18px rgba(var(--opt-accent-rgb, 229, 52, 43), 0.2) !important;
+}
+.aegis-model-option strong { color: #fff !important; }
+.aegis-model-option small { color: rgba(255, 255, 255, 0.55) !important; }
+.aegis-model-option small b { color: rgba(255, 255, 255, 0.78) !important; }
+.aegis-model-option > svg { color: var(--opt-accent, #e5342b) !important; }
+
+/* Composer dock : AI-color reflection rising toward the bar */
+.v3-composer-dock {
+  background:
+    radial-gradient(110% 220% at 50% 140%, var(--model-accent-soft), transparent 60%),
+    linear-gradient(transparent, rgba(5, 5, 5, 0.9) 42%) !important;
+}
+
+/* ============ PROVIDERS : brand-colored catalog cards ============ */
+.aegis-provider {
+  --card-accent: #e5342b;
+  --card-accent-rgb: 229, 52, 43;
+  position: relative;
+  border-color: color-mix(in srgb, var(--card-accent) 30%, transparent) !important;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(var(--card-accent-rgb), 0.09), transparent 54%),
+    linear-gradient(160deg, rgba(24, 24, 29, 0.92), rgba(9, 9, 12, 0.97)) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06), 0 0 0 rgba(var(--card-accent-rgb), 0);
+  transition: border-color 0.28s var(--aegis-ease), box-shadow 0.28s var(--aegis-ease), background 0.28s var(--aegis-ease);
+}
+.aegis-provider:hover {
+  transform: none;
+  border-color: color-mix(in srgb, var(--card-accent) 55%, transparent) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.07),
+    0 16px 38px rgba(0, 0, 0, 0.45),
+    0 0 28px rgba(var(--card-accent-rgb), 0.2) !important;
+}
+.aegis-provider.is-available {
+  background:
+    radial-gradient(120% 110% at 50% 0%, rgba(var(--card-accent-rgb), 0.055), transparent 55%),
+    linear-gradient(160deg, rgba(17, 17, 21, 0.9), rgba(7, 7, 9, 0.94)) !important;
+  border-style: dashed;
+}
+.aegis-provider.is-available:hover { border-style: dashed; }
+.aegis-provider__logo {
+  border-color: color-mix(in srgb, var(--card-accent) 38%, transparent) !important;
+  background: rgba(var(--card-accent-rgb), 0.1) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.08), 0 0 16px rgba(var(--card-accent-rgb), 0.22) !important;
+}
+.aegis-provider__status {
+  color: rgba(255, 255, 255, 0.62) !important;
+  border-color: color-mix(in srgb, var(--card-accent) 36%, transparent) !important;
+  background: rgba(var(--card-accent-rgb), 0.08) !important;
+}
+.aegis-provider__status.is-on {
+  color: #e9e9e9 !important;
+  border-color: color-mix(in srgb, var(--card-accent) 55%, transparent) !important;
+  background: rgba(var(--card-accent-rgb), 0.16) !important;
+  box-shadow: 0 0 14px rgba(var(--card-accent-rgb), 0.25) !important;
+}
+.aegis-provider__name { color: #fff !important; }
+.aegis-provider__kind { color: rgba(255, 255, 255, 0.5) !important; }
+.aegis-provider__reveal {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.aegis-provider__reveal:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--card-accent) 65%, transparent);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+.aegis-provider__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 7px;
+  border: 1px solid rgba(var(--card-accent-rgb), 0.35);
+  background: rgba(var(--card-accent-rgb), 0.08);
+  color: color-mix(in srgb, var(--card-accent) 85%, white);
+  transition: transform 0.25s var(--aegis-ease), background 0.25s var(--aegis-ease);
+}
+.aegis-provider__chevron.is-open { transform: rotate(180deg); background: rgba(var(--card-accent-rgb), 0.16); }
+.aegis-provider__description {
+  overflow: hidden;
+  border-left: 2px solid color-mix(in srgb, var(--card-accent) 45%, transparent);
+  padding-left: 10px;
+  margin-top: 2px;
+}
+.aegis-provider__description p {
+  margin: 0 0 6px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.aegis-provider__description a {
+  color: color-mix(in srgb, var(--card-accent) 80%, white);
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.aegis-provider__description a:hover { color: var(--card-accent); }
+.aegis-provider__meta span { color: rgba(255, 255, 255, 0.6) !important; }
+.aegis-provider__meta svg { color: rgba(255, 255, 255, 0.4) !important; }
+.aegis-provider__actions { border-top-color: rgba(255, 255, 255, 0.08) !important; }
+.aegis-provider__actions .button { color: rgba(255, 255, 255, 0.78); }
+.aegis-provider__actions .button-ghost { color: rgba(255, 255, 255, 0.78); }
+.aegis-provider__actions .button-ghost:hover { color: #fff; border-color: rgba(255, 255, 255, 0.22); }
+.aegis-provider__connect.button-primary {
+  background: var(--card-accent);
+  border-color: color-mix(in srgb, var(--card-accent) 80%, white);
+  color: #0a0a0a;
+  box-shadow: 0 0 18px rgba(var(--card-accent-rgb), 0.32);
+}
+.aegis-provider__connect.button-primary:hover {
+  background: color-mix(in srgb, var(--card-accent) 88%, white);
+  box-shadow: 0 0 26px rgba(var(--card-accent-rgb), 0.45);
+}
+.aegis-provider__connect.button-primary:disabled { background: rgba(var(--card-accent-rgb), 0.35); border-color: transparent; color: rgba(255, 255, 255, 0.4); box-shadow: none; }
+
+/* Provider credential dialog : hint shown alongside auth errors */
+.credential-error--hint {
+  color: rgba(255, 214, 102, 0.92) !important;
+  border-color: rgba(255, 200, 87, 0.3) !important;
+  background: rgba(255, 200, 87, 0.07) !important;
+}

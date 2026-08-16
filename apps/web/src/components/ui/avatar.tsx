@@ -1,0 +1,1 @@
+export function Avatar({name,size=34}:{name:string;size?:number}){return <span aria-label={name} className="inline-grid shrink-0 place-items-center rounded-full border border-white/15 bg-white/10 text-xs font-semibold" style={{width:size,height:size}}>{name.slice(0,2).toUpperCase()}</span>;}

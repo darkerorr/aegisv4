@@ -1,0 +1,1 @@
+import { Palette } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { AppearanceSettings } from "@/features/settings/appearance-settings";export default function Appearance(){return <WorkspacePage title="Appearance" description="Motion, contrast and interface behavior." icon={Palette}><AppearanceSettings/></WorkspacePage>}

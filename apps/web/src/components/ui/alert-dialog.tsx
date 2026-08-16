@@ -1,0 +1,4 @@
+"use client";
+import * as Alert from "@radix-ui/react-alert-dialog";
+export const AlertDialog=Alert.Root; export const AlertDialogTrigger=Alert.Trigger; export const AlertDialogCancel=Alert.Cancel; export const AlertDialogAction=Alert.Action;
+export function AlertDialogContent({title,description,children}:{title:string;description:string;children:React.ReactNode}){return <Alert.Portal><Alert.Overlay className="fixed inset-0 z-50 bg-black/80"/><Alert.Content className="fixed left-1/2 top-1/2 z-50 w-[min(92vw,480px)] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/15 bg-[#0a0a0a] p-6"><Alert.Title className="text-lg font-semibold">{title}</Alert.Title><Alert.Description className="mt-2 text-sm text-zinc-400">{description}</Alert.Description><div className="mt-6 flex justify-end gap-2">{children}</div></Alert.Content></Alert.Portal>}

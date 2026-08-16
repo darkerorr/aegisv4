@@ -1,0 +1,24 @@
+---
+title: Web chat and conversations
+description: Use streaming chat, history, models and session-aware navigation.
+group: Aegis Web
+status: stable
+updated: 2026-07-23
+keywords: web, chat, history, reload, streaming
+---
+
+## Conversation lifecycle
+
+The Web composer submits messages to the authenticated Aegis API. Streaming uses server-sent events, while conversation history is loaded from the conversations endpoints.
+
+## Model selection
+
+The selected row identifies model, provider and Local or Online state. Technical base URLs are intentionally not shown in the selector.
+
+## Reloading
+
+Saved conversations reopen by identifier at `/chat/[conversationId]`. If a response fails before completion, retry the request rather than duplicating the user message.
+
+## Current attachment status
+
+Message attachments are not exposed by the current API contract. Do not treat the paperclip icon as proof that an upload has been stored; see the attachments status guide.

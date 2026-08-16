@@ -1,0 +1,30 @@
+---
+title: Start your first conversation
+description: Sign in, select a real model and verify the streamed response.
+group: Getting started
+status: stable
+updated: 2026-07-23
+keywords: chat, model, streaming, conversation
+---
+
+## Prerequisites
+
+You need an Aegis account and at least one available model. Ollama and LM Studio require their local servers to be running. Cloud providers require their own credentials.
+
+## Start a chat
+
+1. Open **Chat** and select **New chat**.
+2. Open the model selector in the composer.
+3. Choose a model whose status is available.
+4. Enter a prompt and press Enter. Use Shift+Enter for a line break.
+5. Aegis displays streamed output and records the model with the conversation.
+
+## Expected result
+
+The assistant response appears progressively. If the provider fails, Aegis keeps the prompt visible and shows a user-facing error instead of raw JSON.
+
+## Common failures
+
+- **No models:** refresh Models and verify the provider connection.
+- **Local runtime offline:** start Ollama or LM Studio, then retry.
+- **Session expired:** sign in again; do not paste provider keys into the chat.

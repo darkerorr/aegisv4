@@ -1,0 +1,20 @@
+---
+title: OpenAI-compatible endpoints
+description: Configure a custom compatible server without hiding its trust boundary.
+group: Providers
+status: experimental
+updated: 2026-07-23
+keywords: custom, endpoint, base url, compatibility
+---
+
+## Configuration
+
+Provide an explicit base URL, model identifier and credential when required. Aegis cannot infer the privacy, retention or location of a custom endpoint.
+
+## Validate
+
+Test model listing and a minimal chat request. Compatibility labels do not guarantee support for every streaming, vision or tool-calling feature.
+
+## Security
+
+Use HTTPS for remote endpoints. Never place the credential in a browser-visible environment variable or URL query string.

@@ -1,0 +1,24 @@
+---
+title: Chat streaming
+description: Consume the authenticated Aegis SSE chat response.
+group: API
+status: beta
+updated: 2026-07-23
+keywords: api, sse, stream, message delta
+---
+
+## Endpoint
+
+The current client posts to `/chat/stream` with credentials included. The response uses `text/event-stream` and emits message lifecycle data.
+
+## Request boundary
+
+Send model/provider identifiers and conversation messages required by the current contract. Never send provider secrets from the browser with every chat message.
+
+## Cancellation
+
+Use `AbortSignal` from the API client to stop the request. The UI should distinguish a user stop from a provider or network failure.
+
+## Errors
+
+401 indicates an authentication problem. Provider failures should be normalized before display; do not render raw upstream JSON in the workspace.

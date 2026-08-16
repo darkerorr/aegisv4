@@ -1,0 +1,28 @@
+---
+title: Introduction to Aegis
+description: Understand the workspace, models and boundaries before your first conversation.
+group: Getting started
+status: stable
+updated: 2026-07-23
+keywords: overview, web, desktop, cli, models
+---
+
+## What Aegis is
+
+Aegis is a workspace for choosing between configured local runtimes, cloud model providers and connected tools. The interface keeps the selected model and provider visible; it does not make every provider local or private.
+
+## Choose a surface
+
+- **Web** uses the Aegis API for accounts, conversations, providers and integrations.
+- **Desktop** is a Tauri application and can reach device-local runtimes. The current verified release targets Windows x64.
+- **CLI** provides terminal-native project and model workflows through the `aegis` command.
+
+> Feature status matters. Guides marked Planned describe direction, not functionality available today.
+
+## Trust boundaries
+
+A local runtime receives prompts through its configured local endpoint. A cloud provider receives the content needed for the selected request. Connected Google or GitHub data is accessed only through the related integration routes and permissions.
+
+## Next step
+
+Open the first-conversation guide, then configure a provider that matches your intended trust boundary.

@@ -1,0 +1,194 @@
+/* ============================================================
+   AEGIS — PROVIDER DASHBOARD
+   ============================================================ */
+
+.aegis-providers { display: grid; gap: 16px; }
+.aegis-providers__hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 28px;
+  border: 1px solid var(--aegis-line);
+  border-radius: var(--aegis-radius-2xl);
+  background:
+    radial-gradient(600px 220px at 85% -20%, rgba(255, 255, 255, 0.1), transparent 60%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--aegis-shadow-1);
+}
+.aegis-providers__hero h2 { margin: 8px 0 6px; font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -0.04em; color: var(--aegis-text); }
+.aegis-providers__hero p { margin: 0; max-width: 500px; color: var(--aegis-muted); font-size: 13px; line-height: 1.6; }
+.aegis-providers__stats { display: flex; gap: 9px; flex: none; }
+.aegis-providers__stats span {
+  display: grid;
+  min-width: 68px;
+  padding: 12px;
+  border: 1px solid var(--aegis-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  text-align: center;
+}
+.aegis-providers__stats b { font-size: 20px; color: var(--aegis-text); letter-spacing: -0.03em; }
+.aegis-providers__stats small { font: 600 8.5px/1 var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--aegis-faint); margin-top: 4px; }
+
+.aegis-providers__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.aegis-providers__skeleton { height: 150px; border: 1px solid var(--aegis-line-soft); border-radius: 16px; }
+.aegis-provider {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--aegis-line);
+  border-radius: 17px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform var(--aegis-t-med) var(--aegis-ease), border-color var(--aegis-t-med) var(--aegis-ease), box-shadow var(--aegis-t-med) var(--aegis-ease);
+}
+.aegis-provider:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--aegis-shadow-1);
+}
+.aegis-provider.is-on { border-color: rgba(240, 240, 240, 0.16); }
+.aegis-provider__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.aegis-provider__logo {
+  display: grid; place-items: center;
+  width: 44px; height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.aegis-provider__status {
+  display: inline-flex; align-items: center; gap: 5px;
+  font: 600 9px/1 var(--font-mono);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--aegis-faint);
+  padding: 5px 8px;
+  border-radius: 99px;
+  border: 1px solid var(--aegis-line);
+  background: rgba(255, 255, 255, 0.025);
+}
+.aegis-provider__status.is-on { color: #e9e9e9; border-color: rgba(240, 240, 240, 0.18); background: rgba(240, 240, 240, 0.06); }
+.aegis-provider__name { margin: 2px 0 0; font-size: 15px; color: var(--aegis-text); letter-spacing: -0.01em; }
+.aegis-provider__kind { margin: 0; font: 600 9.5px/1 var(--font-mono); color: var(--aegis-faint); }
+.aegis-provider__meta { display: grid; gap: 5px; margin-top: 2px; }
+.aegis-provider__meta span { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--aegis-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.aegis-provider__meta svg { color: var(--aegis-faint); flex: none; }
+.aegis-provider__latency {
+  width: max-content;
+  font: 600 9.5px/1 var(--font-mono);
+  color: #e9e9e9 !important;
+  padding: 3px 7px;
+  border-radius: 6px;
+  border: 1px solid rgba(240, 240, 240, 0.16);
+  background: rgba(240, 240, 240, 0.05);
+}
+.aegis-provider__latency svg { color: #e9e9e9 !important; }
+.aegis-provider__error {
+  display: flex; align-items: center; gap: 6px;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid rgba(155, 155, 155, 0.2);
+  border-radius: 10px;
+  background: rgba(155, 155, 155, 0.05);
+  color: #b8b8b8;
+  font-size: 11px;
+}
+.aegis-provider__error svg { flex: none; }
+.aegis-provider__actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; padding-top: 12px; border-top: 1px solid var(--aegis-line-soft); }
+.aegis-provider__tooltip-anchor { display: inline-flex; }
+
+/* ---- Provider diagnostics ---- */
+.aegis-diagnostics { display: contents; }
+.aegis-diagnostics__panel {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  grid-column: 1 / -1;
+  margin-top: 2px;
+  padding: 16px;
+  border: 1px solid var(--aegis-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+.aegis-diagnostics__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--aegis-line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--aegis-faint);
+  cursor: pointer;
+}
+.aegis-diagnostics__pending { margin: 0; font-size: 12px; color: var(--aegis-muted); }
+.aegis-diagnostics__overall {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid var(--aegis-line);
+}
+.aegis-diagnostics__overall > svg { flex: none; margin-top: 2px; }
+.aegis-diagnostics__overall b { display: block; font-size: 12.5px; color: var(--aegis-text); }
+.aegis-diagnostics__overall span { display: block; margin-top: 3px; font-size: 11.5px; line-height: 1.55; color: var(--aegis-muted); }
+.aegis-diagnostics__overall.is-ok { border-color: rgba(80, 210, 120, 0.35); background: rgba(80, 210, 120, 0.07); }
+.aegis-diagnostics__overall.is-ok > svg { color: #7be39b; }
+.aegis-diagnostics__overall.is-bad { border-color: rgba(240, 90, 90, 0.4); background: rgba(240, 90, 90, 0.07); }
+.aegis-diagnostics__overall.is-bad > svg { color: #ff9d9d; }
+.aegis-diagnostics__overall.is-warn { border-color: rgba(240, 190, 80, 0.4); background: rgba(240, 190, 80, 0.07); }
+.aegis-diagnostics__overall.is-warn > svg { color: #ffd27d; }
+.aegis-diagnostics__facts {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  font-size: 11px;
+}
+.aegis-diagnostics__facts > div { display: grid; grid-template-columns: 92px 1fr; gap: 8px; }
+.aegis-diagnostics__facts dt { color: var(--aegis-faint); }
+.aegis-diagnostics__facts dd { margin: 0; color: var(--aegis-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.aegis-diagnostics__models { display: flex; flex-wrap: wrap; gap: 5px; }
+.aegis-diagnostics__models code {
+  font: 600 10px/1 var(--font-mono);
+  color: #dcdcdc;
+  padding: 4px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.aegis-diagnostics__checks { display: grid; gap: 6px; }
+.aegis-diagnostics__check {
+  display: grid;
+  gap: 3px;
+  padding: 9px 11px;
+  border: 1px solid var(--aegis-line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+.aegis-diagnostics__check b { font-size: 11px; color: var(--aegis-text); }
+.aegis-diagnostics__check span { font: 600 9.5px/1.4 var(--font-mono); color: var(--aegis-muted); }
+.aegis-diagnostics__check small { font-size: 10.5px; line-height: 1.5; color: var(--aegis-muted); }
+.aegis-diagnostics__check.is-bad { border-color: rgba(240, 90, 90, 0.3); }
+.aegis-diagnostics__check.is-bad span { color: #ff9d9d; }
+.aegis-diagnostics__security {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 10.5px;
+  color: var(--aegis-faint);
+}
+.aegis-diagnostics__security svg { flex: none; }
+
+@media (max-width: 700px) {
+  .aegis-providers__hero { flex-direction: column; align-items: flex-start; }
+  .aegis-providers__stats { width: 100%; }
+  .aegis-providers__stats span { flex: 1; }
+}

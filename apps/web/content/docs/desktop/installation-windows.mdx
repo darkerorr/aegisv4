@@ -1,0 +1,28 @@
+---
+title: Install Desktop on Windows
+description: Download, verify and install the current Aegis Desktop development build.
+group: Desktop
+status: beta
+updated: 2026-07-23
+keywords: windows, nsis, msi, install, checksum
+---
+
+## Choose an installer
+
+The Download page reads `release-manifest.json` generated from the actual Tauri artifacts. NSIS is the recommended personal installer; MSI is available as an alternative Windows Installer package.
+
+## Verify the download
+
+1. Copy the SHA-256 value shown beside the artifact.
+2. Run `Get-FileHash ".\Aegis App_0.3.0_x64-setup.exe" -Algorithm SHA256`.
+3. Compare the output exactly before opening the file.
+
+## Install
+
+Open the verified installer and follow the Windows assistant. Start Aegis Desktop from the Start menu after setup completes.
+
+> The current development artifacts are not code-signed. SmartScreen may display a warning. Do not disable antivirus protection globally.
+
+## WebView2
+
+Tauri uses the system WebView2 runtime on Windows. If the window does not open and WebView2 is missing, install the current Microsoft WebView2 Runtime from Microsoft, then retry.

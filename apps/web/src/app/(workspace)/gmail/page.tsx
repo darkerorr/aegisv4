@@ -1,0 +1,1 @@
+import { Mail } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { GmailView } from "@/features/gmail/gmail-view";export default function GmailPage(){return <WorkspacePage title="Gmail" description="Search and inspect mail from your connected Google account." icon={Mail}><GmailView/></WorkspacePage>}

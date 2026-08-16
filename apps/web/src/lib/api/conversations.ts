@@ -1,0 +1,2 @@
+import { api } from "./client";
+export const conversationsApi = { list: api.listConversations.bind(api), get: api.getConversation.bind(api), create: api.createConversation.bind(api), update: api.updateConversation.bind(api), remove: api.deleteConversation.bind(api), archive: api.archiveConversation.bind(api), pin: api.pinConversation.bind(api), stream: api.streamChat.bind(api), resume: api.resumeChat.bind(api), continue: api.continueChat.bind(api), search: api.searchConversations.bind(api) };

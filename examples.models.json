@@ -1,0 +1,16 @@
+[
+  {
+    "id": "llama3",
+    "providerId": "ollama",
+    "name": "llama3",
+    "type": "chat",
+    "active": true
+  },
+  {
+    "id": "qwen2.5-coder",
+    "providerId": "ollama",
+    "name": "qwen2.5-coder",
+    "type": "code",
+    "active": true
+  }
+]

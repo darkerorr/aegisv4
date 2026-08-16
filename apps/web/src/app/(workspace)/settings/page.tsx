@@ -1,0 +1,1 @@
+import { Settings } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { SettingsNav } from "@/components/workspace/settings-nav";export default function SettingsPage(){return <WorkspacePage title="Settings" description="Tune Aegis around the way you work." icon={Settings}><SettingsNav/></WorkspacePage>}

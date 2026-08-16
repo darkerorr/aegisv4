@@ -1,0 +1,17 @@
+{
+  "defaultProvider": "ollama",
+  "defaultModel": "qwen2.5-coder",
+  "theme": "aegis-dark",
+  "conversationsDir": "~/.aegis/history",
+  "historyDir": "~/.aegis/history",
+  "logsDir": "~/.aegis/logs",
+  "trustedProjectsFile": "~/.aegis/trusted.json",
+  "streaming": true,
+  "stream": true,
+  "logLevel": "info",
+  "maxFileBytes": 307200,
+  "maxFileSizeKb": 300,
+  "safeMode": true,
+  "allowProjectReadAfterTrust": true,
+  "noColor": false
+}

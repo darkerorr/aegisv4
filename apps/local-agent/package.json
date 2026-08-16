@@ -1,0 +1,28 @@
+{
+  "name": "@aegis/local-agent",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aegis/agent-runtime": "workspace:*",
+    "@aegis/project-engine": "workspace:*",
+    "@aegis/providers": "workspace:*",
+    "@aegis/security": "workspace:*",
+    "@aegis/supervisor": "workspace:*",
+    "@aegis/types": "workspace:*",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,20 @@
+---
+title: Connect OpenRouter
+description: Configure OpenRouter and understand model-specific availability and pricing.
+group: Providers
+status: beta
+updated: 2026-07-23
+keywords: openrouter, key, models, pricing
+---
+
+## Configure
+
+The configured OpenRouter base URL is `https://openrouter.ai/api/v1`. Add the API key through Providers, test it and refresh the model catalog.
+
+## Model metadata
+
+Model availability, context and price can change at the provider. Treat Aegis metadata as a cached view and verify current provider information before expensive use.
+
+## Troubleshooting
+
+A management credential may not authorize generation. If model listing succeeds but chat fails, verify that the key is allowed to make inference requests and that account limits permit the selected model.

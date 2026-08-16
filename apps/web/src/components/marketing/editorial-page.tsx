@@ -1,0 +1,4 @@
+import type { LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+export function EditorialPage({eyebrow,title,intro,sections,icon:Icon,action}:{eyebrow:string;title:string;intro:string;sections:Array<{title:string;body:string}>;icon:LucideIcon;action?:{label:string;href:string}}){return <main id="main" className="editorial"><div className="shell"><div className="editorial-hero"><span className="editorial-icon"><Icon size={28}/></span><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{intro}</p>{action&&<Link className="button button-primary" href={action.href}>{action.label}<ArrowRight size={16}/></Link>}</div><div className="editorial-grid">{sections.map((section,i)=><section key={section.title}><span className="mono">{String(i+1).padStart(2,"0")}</span><h2>{section.title}</h2><p>{section.body}</p></section>)}</div></div></main>}

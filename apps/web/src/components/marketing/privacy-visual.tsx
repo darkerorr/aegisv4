@@ -1,0 +1,2 @@
+import { Cloud,Fingerprint,Laptop,LockKeyhole } from "lucide-react";
+export function PrivacyVisual(){return <div className="privacy-visual"><div className="shield-ring ring-1"/><div className="shield-ring ring-2"/><div className="shield-ring ring-3"/><div className="privacy-core"><Fingerprint size={34}/><span>Permission<br/>boundary</span></div><div className="flow flow-local"><Laptop size={16}/><span>Local</span></div><div className="flow flow-cloud"><Cloud size={16}/><span>Cloud</span></div><LockKeyhole className="lock" size={20}/></div>}

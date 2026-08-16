@@ -1,0 +1,9 @@
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse-soft { 50% { opacity: .48; transform: scale(.985); } }
+@keyframes drift { 50% { transform: translate3d(0,-8px,0); } }
+.spin { animation: spin 900ms linear infinite; }
+.drift { animation: drift 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+[data-motion="off"] *, [data-motion="off"] *::before, [data-motion="off"] *::after { animation: none !important; transition: none !important; }

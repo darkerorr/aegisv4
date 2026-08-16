@@ -1,0 +1,1 @@
+import { Search } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { SearchView } from "@/features/search/search-view";export default function SearchPage(){return <WorkspacePage title="Search" description="Find context in your real conversation history." icon={Search}><SearchView/></WorkspacePage>}

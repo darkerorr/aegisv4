@@ -1,0 +1,23 @@
+---
+title: Aegis API unavailable
+description: Diagnose failed health checks, ports and browser credential requests.
+group: Troubleshooting
+status: stable
+updated: 2026-07-23
+keywords: health, port 4000, failed to fetch, cors
+---
+
+## Symptoms
+
+The Web reports that the Aegis service cannot be reached, authenticated data stays in an error state or `/health` does not respond.
+
+## Checks
+
+1. Request `http://127.0.0.1:4000/health`.
+2. Verify that port 4000 belongs to the intended Aegis process.
+3. Use the same host family (`127.0.0.1`) for Web and API.
+4. Confirm the API allows `http://127.0.0.1:3000` with credentials.
+
+## Fix
+
+Start the API with the repository launcher and inspect `.aegis/run/api.err.log` if readiness fails. Do not increase the timeout to hide a process that exited.

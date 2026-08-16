@@ -1,0 +1,1 @@
+import { CircleUserRound } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { AccountView } from "@/features/account/account-view";export default function Account(){return <WorkspacePage title="Account" description="Identity, profile and active sessions." icon={CircleUserRound}><AccountView/></WorkspacePage>}

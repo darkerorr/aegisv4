@@ -1,0 +1,1 @@
+import { ChatView } from "@/features/chat/chat-view";export default async function Conversation({params}:{params:Promise<{conversationId:string}>}){const{conversationId}=await params;return <ChatView conversationId={conversationId}/>}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ollama",
+    "kind": "ollama",
+    "name": "Ollama Local",
+    "baseUrl": "http://localhost:11434",
+    "active": true
+  },
+  {
+    "id": "lmstudio",
+    "kind": "lmstudio",
+    "name": "LM Studio Local",
+    "baseUrl": "http://localhost:1234/v1",
+    "active": true
+  },
+  {
+    "id": "openai",
+    "kind": "openai-compatible",
+    "name": "OpenAI Compatible",
+    "baseUrl": "https://api.openai.com/v1",
+    "apiKeyEnv": "AEGIS_OPENAI_API_KEY",
+    "active": false
+  },
+  {
+    "id": "nvidia",
+    "kind": "nvidia-compatible",
+    "name": "NVIDIA NIM",
+    "baseUrl": "https://integrate.api.nvidia.com/v1",
+    "apiKeyEnv": "NVIDIA_API_KEY",
+    "active": true
+  }
+]

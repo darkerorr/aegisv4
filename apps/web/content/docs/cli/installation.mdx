@@ -1,0 +1,26 @@
+---
+title: Install the CLI
+description: Install the declared @aegis/cli package or run the repository build.
+group: CLI
+status: beta
+updated: 2026-07-23
+keywords: npm, node, command line, install
+---
+
+## Requirements
+
+The repository requires Node.js 20 or newer. The CLI package declares the name `@aegis/cli` and exposes the `aegis` binary.
+
+## Registry installation
+
+Run `npm install -g @aegis/cli`, then verify with `aegis --version`.
+
+> Registry publication is not proven by the source tree. If npm cannot find the package, build the repository CLI instead of installing an unrelated package.
+
+## Repository build
+
+From the repository root, run `pnpm.cmd build:cli`, then execute the generated `dist/index.js` with Node.
+
+## Remove
+
+For a registry installation, run `npm uninstall -g @aegis/cli`.

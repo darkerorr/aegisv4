@@ -1,0 +1,1 @@
+import { Network } from "lucide-react";import { WorkspacePage } from "@/components/workspace/workspace-page";import { ProvidersGrid } from "@/features/providers/providers-grid";export default function ProvidersPage(){return <WorkspacePage title="Providers" description="Configure and verify model runtimes and cloud connections." icon={Network}><ProvidersGrid/></WorkspacePage>}

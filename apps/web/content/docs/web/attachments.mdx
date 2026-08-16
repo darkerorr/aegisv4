@@ -1,0 +1,20 @@
+---
+title: Attachments
+description: Current availability and the intended message attachment boundary.
+group: Aegis Web
+status: planned
+updated: 2026-07-23
+keywords: upload, pdf, image, attachment
+---
+
+## Availability
+
+The current API does not expose production attachment upload, extraction and deletion routes. Attachment analysis is therefore marked **Planned** and must not be represented as available.
+
+## Intended boundary
+
+When implemented, the browser should upload a validated file once, receive an attachment identifier and send only that identifier with a chat request. MIME type, extension, size and extraction support must be validated server-side.
+
+## Until then
+
+Paste only non-sensitive text that you are comfortable sending to the selected model. Do not place secrets or binary data in a normal message payload.

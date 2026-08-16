@@ -1,0 +1,7 @@
+/* ============================================================
+   AEGIS — CALENDAR / MAIL PREMIUM SUPPLEMENTS
+   Only classes not defined elsewhere (legacy calendar styles
+   live in globals.css and win the cascade).
+   ============================================================ */
+
+.aegis-mail-body { max-width: 76ch; }
