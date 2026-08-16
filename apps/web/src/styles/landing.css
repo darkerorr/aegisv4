@@ -216,11 +216,21 @@
   border-top: 1px solid var(--border);
 }
 .lp-steps {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-top: 60px;
 }
+.lp-steps__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 44px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(229, 52, 43, 0.4), transparent);
+}
+.lp-step__link { display: none; }
 .lp-step {
   position: relative;
   min-height: 250px;
@@ -646,6 +656,14 @@
   .lp-triptych,
   .lp-dev__cards {
     grid-template-columns: 1fr;
+  }
+  .lp-steps__line { display: none; }
+  .lp-step__link {
+    display: block;
+    justify-self: center;
+    width: 1px;
+    height: 22px;
+    background: linear-gradient(rgba(229, 52, 43, 0.4), rgba(229, 52, 43, 0.15));
   }
   .lp-step,
   .lp-feature {

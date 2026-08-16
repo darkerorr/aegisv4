@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import {
   ArrowRight,
   Bot,
@@ -9,12 +10,10 @@ import {
   Fingerprint,
   Gauge,
   HardDrive,
-  MessagesSquare,
   Network,
   PenLine,
   Plug,
   SlidersHorizontal,
-  Sparkles,
   TerminalSquare,
   Workflow,
 } from "lucide-react";
@@ -23,6 +22,12 @@ import { ChatDemo } from "@/components/marketing/chat-demo";
 import { ModelOrbit } from "@/components/marketing/model-orbit";
 import { PrivacyVisual } from "@/components/marketing/privacy-visual";
 import { HeroActions } from "@/components/marketing/hero-actions";
+
+const steps = [
+  { n: "01", icon: Network, title: "Connecte tes providers", copy: "Ajoutez une clé API (OpenAI, Anthropic, NVIDIA, Groq…) ou un runtime local (Ollama, LM Studio). Vos clés restent chiffrées sur votre machine." },
+  { n: "02", icon: SlidersHorizontal, title: "Choisis ton modèle", copy: "Aegis détecte vos accès et ne propose que les modèles réellement disponibles — regroupés par capacité, pas par URL." },
+  { n: "03", icon: Bot, title: "Chat ou Work, avec tes outils", copy: "Discutez dans un fil persistant, ou passez en Work Mode pour confier de vraies tâches à l'agent — GitHub, Drive et Calendar inclus." },
+];
 
 const capabilities = [
   { icon: Network, title: "Multi-providers", copy: "OpenAI, Anthropic, NVIDIA NIM, OpenRouter, Groq, Ollama et plus — gérez toutes vos clés depuis un seul endroit, chiffrées et stockées localement." },
@@ -62,24 +67,24 @@ export default function Landing() {
       <section className="lp-start">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">01 / Get started</span>
-            <h2 className="lp-section-title">From zero to your first answer.</h2>
-            <p className="lp-section-copy">Aegis is ready in three deliberate steps — no spreadsheets, no vendor lock-in.</p>
+            <span className="lp-eyebrow">03 / Comment ça marche</span>
+            <h2 className="lp-section-title">Prêt en trois <span className="lp-accent">étapes.</span></h2>
+            <p className="lp-section-copy">Aucun tableur, aucune configuration interminable — Aegis démarre en trois mouvements délibérés.</p>
           </Reveal>
           <div className="lp-steps">
-            {[
-              { n: "01", icon: Network, title: "Connect a provider", copy: "Add a local runtime (Ollama, LM Studio) or a cloud provider (NVIDIA, OpenRouter) with your API key." },
-              { n: "02", icon: Sparkles, title: "Choose your model", copy: "Aegis probes your credentials and only offers models you can actually reach — grouped by capability." },
-              { n: "03", icon: MessagesSquare, title: "Start asking", copy: "Chat with context that persists. Attach projects, search your files and delegate real work." },
-            ].map((step) => (
-              <Reveal key={step.n} delay={Number(step.n[1]) * 0.05}>
-                <article className="lp-step">
-                  <span className="lp-step__icon"><step.icon size={18} /></span>
-                  <em className="lp-step__n">{step.n}</em>
-                  <h3>{step.title}</h3>
-                  <p>{step.copy}</p>
-                </article>
-              </Reveal>
+            <span className="lp-steps__line" aria-hidden="true" />
+            {steps.map((step, i) => (
+              <Fragment key={step.n}>
+                {i > 0 && <span className="lp-step__link" aria-hidden="true" />}
+                <Reveal delay={i * 0.06}>
+                  <article className="lp-step">
+                    <span className="lp-step__icon"><step.icon size={18} /></span>
+                    <em className="lp-step__n">ÉTAPE {step.n}</em>
+                    <h3>{step.title}</h3>
+                    <p>{step.copy}</p>
+                  </article>
+                </Reveal>
+              </Fragment>
             ))}
           </div>
         </div>
