@@ -7,6 +7,7 @@ import { ModelSelector } from "@/features/chat/model-selector";
 import { useModelSelection } from "@/features/chat/model-selection-store";
 import { FileTypeIcon } from "@/features/work/file-icon";
 import { AegisIcon, type AegisIconName } from "@/components/aegis/aegis-icons";
+import { AegisLogo } from "@/components/brand/aegis-logo";
 import { WORK_MODES, type WorkAgentMode } from "@/features/work/work-modes";
 import { DEFAULT_TEAM_ROLES, WORK_TEAM_ROLES, type TeamSelectionMode } from "@/features/work/work-team";
 import type { WorkAgentRole } from "@aegis/api-client";
@@ -236,18 +237,40 @@ export function WorkComposer({ workspaceMode, workspaceName, streaming, input, o
           </div>
 
           <div className="v3-composer__right">
-            <div className="work-composer__tools work-team">
-              <button
-                type="button"
-                className={`work-tools__button work-team__button ${teamMode === "custom" ? "is-active" : ""}`}
-                aria-expanded={teamOpen}
-                title="Équipe de 5 agents spécialisés"
-                onClick={() => { setTeamOpen((v) => !v); setToolsOpen(false); setPickerOpen(false); }}
-              >
-                <Users size={13} />
-                Équipe{teamMode === "custom" ? ` · ${teamRoles.length || DEFAULT_TEAM_ROLES.length}` : ""}
-              </button>
-              {teamOpen && (
+            <div className="work-composer__tools work-agent-mode">
+              <div className="work-agent-mode__seg" role="group" aria-label="Mode d'exécution de l'agent">
+                <button
+                  type="button"
+                  className={teamMode === "single" ? "is-active" : ""}
+                  aria-pressed={teamMode === "single"}
+                  title="Un seul agent exécute la tâche"
+                  onClick={() => { if (teamMode !== "single") onTeamChange("single", []); setTeamOpen(false); }}
+                >
+                  <AegisLogo size={13} />Agent
+                </button>
+                <button
+                  type="button"
+                  className={teamMode !== "single" ? "is-active" : ""}
+                  aria-pressed={teamMode !== "single"}
+                  title="Équipe de 5 agents spécialisés"
+                  onClick={() => { if (teamMode === "single") onTeamChange("auto", teamRoles); setTeamOpen(false); }}
+                >
+                  <Users size={13} />Team
+                </button>
+              </div>
+              {teamMode !== "single" && (
+                <button
+                  type="button"
+                  className={`work-tools__button work-team__button ${teamMode === "custom" ? "is-active" : ""}`}
+                  aria-expanded={teamOpen}
+                  title="Configurer l'équipe"
+                  onClick={() => { setTeamOpen((v) => !v); setToolsOpen(false); setPickerOpen(false); }}
+                >
+                  <Users size={13} />
+                  {teamMode === "auto" ? "Auto" : `${teamRoles.length || DEFAULT_TEAM_ROLES.length} rôles`}
+                </button>
+              )}
+              {teamOpen && teamMode !== "single" && (
                 <div className="work-team__menu" role="dialog" aria-label="Équipe d'agents">
                   <header className="work-team__head">
                     <strong>Équipe de 5 agents</strong>
@@ -261,7 +284,7 @@ export function WorkComposer({ workspaceMode, workspaceName, streaming, input, o
                       data-active={teamMode === "auto"}
                       onClick={() => onTeamChange("auto", teamRoles)}
                     >
-                      <AegisIcon name="agent" size={13} />
+                      <AegisLogo size={14} />
                       Auto — l&apos;IA choisit
                       <small>Un orchestrateur (Développeur) sélectionne les 4 spécialistes adaptés à la demande.</small>
                     </button>

@@ -5,7 +5,7 @@ import type { WorkAgentRole } from "@aegis/api-client";
    Mirrors the role catalog of the Local Agent (apps/local-agent/src/team.ts).
    ========================================================================== */
 
-export type TeamSelectionMode = "auto" | "custom";
+export type TeamSelectionMode = "single" | "auto" | "custom";
 
 export interface WorkTeamRoleMeta {
   role: WorkAgentRole;
@@ -35,6 +35,9 @@ export function teamRequest(
   mode: TeamSelectionMode,
   roles: WorkAgentRole[],
 ): { enabled: boolean; mode: "auto" | "custom"; roles: WorkAgentRole[] } {
+  if (mode === "single") {
+    return { enabled: false, mode: "auto", roles: [] };
+  }
   if (mode === "custom") {
     const unique = roles.length === 0 ? DEFAULT_TEAM_ROLES : (["dev" as WorkAgentRole, ...roles]).filter((role, index, all) => all.indexOf(role) === index).slice(0, 5);
     return { enabled: true, mode, roles: unique };

@@ -36,6 +36,8 @@ import { WorkFilePreview } from "@/features/work/work-file-preview";
 import { WorkHistoryDrawer } from "@/features/work/work-history-drawer";
 import { AegisIcon } from "@/components/aegis/aegis-icons";
 import { AegisCore, coreStateFromActivity } from "@/components/aegis/aegis-core";
+import { AegisBrand } from "@/components/aegis/aegis-brand";
+import { AegisLogo } from "@/components/brand/aegis-logo";
 import { DEFAULT_WORK_MODE, workModeById, type WorkAgentMode } from "@/features/work/work-modes";
 import { DEFAULT_TEAM_ROLES, teamRequest, workTeamRoleMeta, type TeamSelectionMode } from "@/features/work/work-team";
 import type { WorkAgentEvent, WorkAgentRole, WorkSessionCreateInput, WorkSessionPatchInput } from "@aegis/api-client";
@@ -279,7 +281,7 @@ export function WorkMode() {
   const [activityPopover, setActivityPopover] = useState(false);
   const [mode, setAgentMode] = useState<WorkAgentMode>(DEFAULT_WORK_MODE);
   const [attachedFiles, setAttachedFiles] = useState<string[]>([]);
-  const [teamMode, setTeamMode] = useState<TeamSelectionMode>("auto");
+  const [teamMode, setTeamMode] = useState<TeamSelectionMode>("single");
   const [teamRoles, setTeamRoles] = useState<WorkAgentRole[]>(DEFAULT_TEAM_ROLES.slice(1));
 
   const pendingFileOpRef = useRef<PendingFileOp | null>(null);
@@ -981,7 +983,7 @@ export function WorkMode() {
               animate={isStreaming ? { scale: [1, 1.08, 1] } : { scale: 1 }}
               transition={isStreaming ? { duration: 2.4, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
             >
-              {isStreaming ? <AegisCore state={coreStateFromActivity(agentActivity, true)} size={16} /> : model ? <ProviderIcon provider={modelBrandSlug(model, providerSlug(model.providerKind || model.providerName || ""))} size={16} /> : <AegisIcon name="agent" size={14} />}
+              {isStreaming ? <AegisCore state={coreStateFromActivity(agentActivity, true)} size={16} /> : model ? <ProviderIcon provider={modelBrandSlug(model, providerSlug(model.providerKind || model.providerName || ""))} size={16} /> : <AegisLogo size={16} />}
               {isStreaming && <i className="work-avatar__ping" aria-hidden="true" />}
             </motion.span>
             <span className="v3-msg__identity">
@@ -1132,7 +1134,7 @@ export function WorkMode() {
         <button type="button" className="v3-nav-toggle" aria-label="Open navigation" onClick={openNav}>
           <Menu size={16} />
         </button>
-        <span className="work-topbar__brand">AEGIS</span>
+        <AegisBrand size={19} label="AEGIS" className="work-topbar__brand" />
         <span className="work-topbar__divider" aria-hidden="true" />
         <button type="button" className="work-topbar__workspace" title={workspace?.root ?? "Ouvrir les fichiers"} onClick={() => { setFilesDrawerOpen(true); requestAnimationFrame(() => filesSearchRef.current?.focus()); }}>
           <AegisIcon name="folder" size={12} />{workspace?.name ?? "Work Mode"}
@@ -1226,13 +1228,13 @@ export function WorkMode() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <motion.span
-                  className="work-hero__orb"
-                  animate={{ scale: [1, 1.12, 1], rotate: [0, 8, 0] }}
+                  className="work-hero__orb work-hero__orb--aegis"
+                  animate={{ scale: [1, 1.12, 1] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <AegisIcon name="agent" size={28} />
+                  <AegisLogo size={44} />
                 </motion.span>
-                <strong>Agent de travail</strong>
+                <strong>Aegis</strong>
                 <p>Demande à l&apos;agent de lire, créer, modifier des fichiers ou exécuter des commandes dans <code>{workspace?.name}</code>. Les actions sensibles demandent ton approbation.</p>
                 <div className="work-hero__chips">
                   <span><AegisIcon name="terminal" size={10} />runCommand</span>
@@ -1255,7 +1257,7 @@ export function WorkMode() {
             )}
 
             <AnimatePresence initial={false}>
-              {(teamMode === "custom" || runs.some((run) => run.memberId)) && (
+              {(teamMode !== "single" || runs.some((run) => run.memberId)) && (
                 <motion.div
                   className="work-team__bar"
                   initial={{ opacity: 0, y: 10 }}
@@ -1263,7 +1265,7 @@ export function WorkMode() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.28 }}
                 >
-                  <span className="work-team__bar-title"><Users size={12} />Équipe {teamMode === "auto" ? "(choisie par l'IA)" : "(personnalisée)"}</span>
+                  <span className="work-team__bar-title"><Users size={12} />Équipe {teamMode === "auto" ? "(choisie par l'IA)" : teamMode === "custom" ? "(personnalisée)" : "(session)"}</span>
                   <div className="work-team__bar-roles">
                     {(teamMode === "custom"
                       ? (["dev" as WorkAgentRole, ...teamRoles] as WorkAgentRole[])
