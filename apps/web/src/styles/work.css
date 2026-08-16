@@ -424,6 +424,18 @@
 .work-composer-dock .v3-composer__row textarea { min-height: 120px; }
 .work-composer-dock .v3-composer__error { max-width: 980px; margin: 8px auto 0; }
 
+/* Composer toolbar : never overflow the rounded frame. Work Mode has many
+   controls (model, tools, file, mode, team, modes, cloud chip) — wrap to a
+   new line with a consistent vertical gap when they no longer fit. */
+.work-composer .v3-composer__toolbar { flex-wrap: wrap; row-gap: 6px; }
+.work-composer .v3-composer__left,
+.work-composer .v3-composer__right { flex-wrap: wrap; row-gap: 6px; min-width: 0; }
+.work-composer .v3-composer__left { justify-content: flex-start; }
+.work-composer .v3-composer__right { justify-content: flex-end; }
+.work-composer .v3-composer__row textarea { min-width: 0; }
+.work-composer .work-agent-mode { flex-wrap: wrap; }
+.work-composer .work-modes { flex-wrap: wrap; }
+
 .work-agent-mode { display: inline-flex; align-items: center; gap: 8px; }
 .work-agent-mode__seg { display: inline-flex; align-items: center; gap: 2px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 9px; background: rgba(255, 255, 255, .04); padding: 2px; }
 .work-agent-mode__seg button {
