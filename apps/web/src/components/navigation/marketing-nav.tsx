@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ChevronDown,
   CircleUserRound,
+  Github,
   LogOut,
   Menu,
   MessageSquareText,
@@ -25,11 +27,10 @@ import {
 import { useAuth } from "@/features/auth/use-auth";
 
 const links = [
-  { label: "Models", href: "/models" },
-  { label: "Integrations", href: "/#integrations" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Docs", href: "/docs" },
-  { label: "Download", href: "/download" },
+  { label: "Fonctionnalités", href: "/#features" },
+  { label: "Providers", href: "/#providers" },
+  { label: "Documentation", href: "/docs" },
+  { label: "GitHub", href: "https://github.com/darkerorr/aegisv4", external: true },
 ];
 
 function SessionActions({ mobile = false, onNavigate }: { mobile?: boolean; onNavigate?: () => void }) {
@@ -37,23 +38,23 @@ function SessionActions({ mobile = false, onNavigate }: { mobile?: boolean; onNa
   const router = useRouter();
 
   if (auth.status === "loading") {
-    return <div className="auth-nav-skeleton" aria-label="Checking your Aegis session"><span /><i /></div>;
+    return <div className="auth-nav-skeleton" aria-label="Vérification de votre session"><span /><i /></div>;
   }
 
   if (auth.status === "error") {
     return <button className="auth-nav-error" type="button" onClick={() => void auth.refresh()}>
-      <RefreshCw size={15} aria-hidden="true" /> Session unavailable <span>Retry</span>
+      <RefreshCw size={15} aria-hidden="true" /> Session indisponible <span>Réessayer</span>
     </button>;
   }
 
   if (auth.status !== "authenticated") {
     return <>
-      <Link className={mobile ? undefined : "nav-link"} href="/login" onClick={onNavigate}>Sign in</Link>
-      <Link className={mobile ? undefined : "button button-primary min-h-9 px-4 text-sm"} href="/register" onClick={onNavigate}>Start free</Link>
+      <Link className={mobile ? undefined : "button button-secondary min-h-9 px-4 text-sm"} href="/login" onClick={onNavigate}>Se connecter</Link>
+      <Link className={mobile ? undefined : "button button-primary min-h-9 px-4 text-sm"} href="/register" onClick={onNavigate}>Commencer</Link>
     </>;
   }
 
-  const name = auth.user.displayName || auth.user.email.split("@")[0] || "Aegis user";
+  const name = auth.user.displayName || auth.user.email.split("@")[0] || "Utilisateur Aegis";
   const handleSignOut = async () => {
     await auth.signOut();
     onNavigate?.();
@@ -63,27 +64,27 @@ function SessionActions({ mobile = false, onNavigate }: { mobile?: boolean; onNa
   if (mobile) {
     return <>
       <div className="mobile-account-summary"><Avatar name={name} size={32} /><span><strong>{name}</strong><small>{auth.user.email}</small></span></div>
-      <Link href="/chat" onClick={onNavigate}><MessageSquareText size={17} aria-hidden="true" /> Open workspace</Link>
-      <Link href="/account" onClick={onNavigate}><CircleUserRound size={17} aria-hidden="true" /> Account</Link>
-      <Link href="/settings" onClick={onNavigate}><Settings size={17} aria-hidden="true" /> Settings</Link>
-      <button className="mobile-sign-out" type="button" onClick={() => void handleSignOut()}><LogOut size={17} aria-hidden="true" /> Sign out</button>
+      <Link href="/chat" onClick={onNavigate}><MessageSquareText size={17} aria-hidden="true" /> Ouvrir le workspace</Link>
+      <Link href="/account" onClick={onNavigate}><CircleUserRound size={17} aria-hidden="true" /> Compte</Link>
+      <Link href="/settings" onClick={onNavigate}><Settings size={17} aria-hidden="true" /> Réglages</Link>
+      <button className="mobile-sign-out" type="button" onClick={() => void handleSignOut()}><LogOut size={17} aria-hidden="true" /> Déconnexion</button>
     </>;
   }
 
   return <>
-    <Link className="button button-primary min-h-9 px-4 text-sm" href="/chat">Open workspace</Link>
+    <Link className="button button-primary min-h-9 px-4 text-sm" href="/chat">Ouvrir le workspace</Link>
     <DropdownMenu>
-      <DropdownMenuTrigger className="marketing-account-button" aria-label={`Open account menu for ${name}`}>
+      <DropdownMenuTrigger className="marketing-account-button" aria-label={`Menu du compte de ${name}`}>
         <Avatar name={name} size={30} /><ChevronDown size={14} aria-hidden="true" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <div className="marketing-account-summary"><strong>{name}</strong><span>{auth.user.email}</span></div>
         <DropdownMenuSeparator className="my-1 h-px bg-white/10" />
-        <DropdownMenuItem asChild><Link href="/chat"><MessageSquareText size={16} aria-hidden="true" /> Open workspace</Link></DropdownMenuItem>
-        <DropdownMenuItem asChild><Link href="/account"><CircleUserRound size={16} aria-hidden="true" /> Account</Link></DropdownMenuItem>
-        <DropdownMenuItem asChild><Link href="/settings"><Settings size={16} aria-hidden="true" /> Settings</Link></DropdownMenuItem>
+        <DropdownMenuItem asChild><Link href="/chat"><MessageSquareText size={16} aria-hidden="true" /> Ouvrir le workspace</Link></DropdownMenuItem>
+        <DropdownMenuItem asChild><Link href="/account"><CircleUserRound size={16} aria-hidden="true" /> Compte</Link></DropdownMenuItem>
+        <DropdownMenuItem asChild><Link href="/settings"><Settings size={16} aria-hidden="true" /> Réglages</Link></DropdownMenuItem>
         <DropdownMenuSeparator className="my-1 h-px bg-white/10" />
-        <DropdownMenuItem onSelect={() => void handleSignOut()}><LogOut size={16} aria-hidden="true" /> Sign out</DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => void handleSignOut()}><LogOut size={16} aria-hidden="true" /> Déconnexion</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   </>;
@@ -92,6 +93,7 @@ function SessionActions({ mobile = false, onNavigate }: { mobile?: boolean; onNa
 export function MarketingNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
     const handler = () => setScrolled(scrollY > 24);
@@ -101,27 +103,36 @@ export function MarketingNav() {
   }, []);
 
   return <header className="fixed inset-x-0 top-0 z-40 px-3 pt-3">
-    <nav aria-label="Primary" data-scrolled={scrolled} className="marketing-nav mx-auto flex h-14 max-w-[1180px] items-center justify-between rounded-2xl px-3">
+    <nav aria-label="Principale" data-scrolled={scrolled} className="marketing-nav mx-auto flex h-14 max-w-[1180px] items-center justify-between rounded-2xl px-3">
       <Link href="/" className="focus-ring flex items-center gap-2 rounded-lg px-1.5 font-semibold"><AegisLogo size={29} priority /><span>Aegis</span></Link>
       <div className="hidden items-center gap-1 lg:flex">
-        <DropdownMenu>
-          <DropdownMenuTrigger className="nav-link">Product <ChevronDown size={14} aria-hidden="true" /></DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
-            <DropdownMenuItem asChild><Link href="/product">Aegis workspace</Link></DropdownMenuItem>
-            <DropdownMenuItem asChild><Link href="/download">Desktop app</Link></DropdownMenuItem>
-            <DropdownMenuItem asChild><Link href="/docs#cli">Command line</Link></DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        {links.map((link) => <Link className="nav-link" href={link.href} key={link.label}>{link.label}</Link>)}
+        {links.map((link) => link.external ? (
+          <a className="nav-link" href={link.href} key={link.label} target="_blank" rel="noreferrer"><Github size={15} aria-hidden="true" />{link.label}</a>
+        ) : (
+          <Link className="nav-link" href={link.href} key={link.label}>{link.label}</Link>
+        ))}
       </div>
       <div className="marketing-auth-slot hidden items-center gap-2 lg:flex"><SessionActions /></div>
-      <button aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? "Close menu" : "Open menu"} className="focus-ring rounded-lg p-2 lg:hidden" onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
+      <button aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} className="focus-ring rounded-lg p-2 lg:hidden" onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
     </nav>
-    {open && <div id="mobile-nav" className="mobile-menu lg:hidden">
-      <Link href="/product" onClick={() => setOpen(false)}>Product</Link>
-      {links.map((link) => <Link href={link.href} key={link.label} onClick={() => setOpen(false)}>{link.label}</Link>)}
-      <div className="divider" />
-      <SessionActions mobile onNavigate={() => setOpen(false)} />
-    </div>}
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          id="mobile-nav"
+          className="mobile-menu lg:hidden"
+          initial={reduced ? false : { opacity: 0, y: -10, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={reduced ? undefined : { opacity: 0, y: -8, scale: 0.98 }}
+          transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
+        >
+          <Link href="/#features" onClick={() => setOpen(false)}>Fonctionnalités</Link>
+          <Link href="/#providers" onClick={() => setOpen(false)}>Providers</Link>
+          <Link href="/docs" onClick={() => setOpen(false)}>Documentation</Link>
+          <a href="https://github.com/darkerorr/aegisv4" target="_blank" rel="noreferrer" onClick={() => setOpen(false)}><Github size={17} aria-hidden="true" /> GitHub</a>
+          <div className="divider" />
+          <SessionActions mobile onNavigate={() => setOpen(false)} />
+        </motion.div>
+      )}
+    </AnimatePresence>
   </header>;
 }
