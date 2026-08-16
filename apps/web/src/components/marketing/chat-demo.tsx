@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion, useReducedMotion } from "framer-motion";
 import { ArrowUp, Braces, Check, ChevronDown, Globe2, LibraryBig, Paperclip, Sparkles, Wrench } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AegisLogo } from "@/components/brand/aegis-logo";
@@ -21,13 +21,16 @@ const ANSWERS = [
 ];
 
 export function ChatDemo() {
+  const reduced = useReducedMotion();
   const [step, setStep] = useState(0);
   useEffect(() => {
+    if (reduced) return;
     const id = setInterval(() => setStep((v) => (v + 1) % ANSWERS.length), 2600);
     return () => clearInterval(id);
-  }, []);
+  }, [reduced]);
   return (
-    <div className="chat-demo light-sweep">
+    <MotionConfig reducedMotion="user">
+      <div className="chat-demo light-sweep">
       <div className="demo-top">
         <span className="flex items-center gap-2"><i /><i /><i /></span>
         <span className="mono text-[11px] text-zinc-500">WORKSPACE PRIVÉ / BRIEF PRODUIT</span>
@@ -63,5 +66,6 @@ export function ChatDemo() {
         </aside>
       </div>
     </div>
+    </MotionConfig>
   );
 }

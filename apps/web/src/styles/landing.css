@@ -685,3 +685,54 @@
     font-size: clamp(4rem, 18vw, 7rem);
   }
 }
+
+/* ---------- Polish: animations & micro-interactions ---------- */
+.lp-hero__visual .chat-demo {
+  animation: lp-float 7s ease-in-out infinite;
+}
+@keyframes lp-float {
+  0%, 100% { transform: perspective(1400px) rotateX(1.5deg) translateY(0); }
+  50% { transform: perspective(1400px) rotateX(1.5deg) translateY(-8px); }
+}
+.lp-link {
+  transition: gap var(--control), color var(--control);
+}
+.lp-link svg {
+  transition: transform var(--control);
+}
+.lp-link:hover svg {
+  transform: translateX(3px);
+}
+.lp-feature,
+.lp-step,
+.lp-triptych article,
+.lp-provider-chip,
+.lp-dev__cards > a {
+  -webkit-tap-highlight-color: transparent;
+}
+.lp-cta .button-primary {
+  transition: transform var(--control), box-shadow var(--control), background var(--control), border-color var(--control);
+}
+.lp-cta .button-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+.lp-cta .button-primary:active {
+  transform: translateY(0) scale(0.99);
+}
+.button:active {
+  transform: translateY(0) scale(0.98);
+}
+.lp-badge,
+.lp-hero__visual .chat-demo {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-badge i,
+  .lp-hero__visual .chat-demo {
+    animation: none !important;
+  }
+}
