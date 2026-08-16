@@ -153,13 +153,6 @@
   z-index: 2;
   padding-top: 3vh;
 }
-.lp-hero__eyebrow i {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 12px var(--success);
-}
 .lp-hero__title {
   margin: 26px 0 28px;
   max-width: 920px;
@@ -184,21 +177,6 @@
   color: #aaa;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   line-height: 1.65;
-}
-.lp-hero__signals {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px 18px;
-  margin-top: 38px;
-  color: #7d7d7d;
-  font: 500 10px/1 var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-}
-.lp-hero__signals span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 .lp-hero__fade {
   position: absolute;
@@ -277,17 +255,6 @@
   color: #888;
   font-size: 0.92rem;
   line-height: 1.6;
-}
-
-/* ---------- Demo ---------- */
-.lp-demo {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(80px, 9vw, 130px) 0;
-  border-top: 1px solid var(--border);
-}
-.lp-demo .chat-demo {
-  margin-top: 64px;
 }
 
 /* ---------- Features ---------- */
@@ -616,7 +583,6 @@
     text-align: center;
   }
   .lp-hero__copy .hero-actions,
-  .lp-hero__signals,
   .lp-hero__metrics {
     justify-content: center;
   }

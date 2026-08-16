@@ -66,51 +66,58 @@ Audit effectué avant la refonte. Aucune modification de code à cette étape.
 
 ## 5. Vérification finale (étape 9) — après refonte
 
+**Décision de langue** : le reste du produit (workspace, docs, messages de
+commit) est en anglais → **la landing entière est repassée en anglais**
+(`fix: landing - retour à l'anglais...`). Toute la structure/design de la
+refonte est conservée : header, hero avec `ChatDemo`, fonctionnalités,
+« How it works », 23 logos providers, CTA, footer, animations, responsive.
+
 **Refondu et vérifié ✅**
 
-- Header/navigation français (Fonctionnalités → `/#features`, Providers →
-  `/#providers`, Documentation → `/docs`, GitHub externe), menu mobile animé.
-- Hero : badge rouge « Multi-providers IA · Local-first », titre français avec
-  accent **dégradé rouge** (`.lp-hero__accent`), CTA « Commencer gratuitement »
-  + « Voir sur GitHub », glow rouge, **métriques réelles** (20+ fournisseurs,
-  3 surfaces, MIT, Local-first), preview produit = `ChatDemo` (logo anthropic +
-  pastille modèle + bande de logos providers). Section Demo supprimée.
-- Fonctionnalités : 6 cartes réelles (Multi-providers, sélecteur de modèle,
-  composer avancé, connecteurs, Work Mode, local-first), icônes dans des carrés
-  teintés rouge, stagger `Reveal` (`viewport once`).
-- Comment ça marche : timeline 3 étapes, ligne horizontale desktop / verticale
-  mobile.
+- Header/navigation anglais (Features → `/#features`, Providers → `/#providers`,
+  Documentation → `/docs`, GitHub externe), menu mobile animé.
+- Hero : badge rouge « Multi-provider AI · Local-first », titre avec accent
+  **dégradé rouge** (`.lp-hero__accent`), CTA « Start free » + « View on
+  GitHub », glow rouge, **métriques réelles** (20+ providers, 3 surfaces, MIT,
+  Local-first), preview produit = `ChatDemo` (logo anthropic + pastille modèle +
+  bande de logos providers). Section Demo supprimée.
+- Fonctionnalités : 6 cartes réelles (Multi-provider, model picker, advanced
+  composer, connectors, Work Mode, local-first), icônes en carrés teintés rouge,
+  stagger `Reveal` (`viewport once`).
+- How it works : timeline 3 étapes, ligne horizontale desktop / verticale mobile.
 - Providers : grille de **23 logos réels** (21 cloud du `cloud-catalog` + Ollama
   + LM Studio), grisés au repos → couleur au hover. Copie honnête
-  (« Vingt-trois fournisseurs »).
-- CTA final (dégradé rouge sombre) + footer complet en français : colonnes
-  Produit / Ressources / Légal, description, **année dynamique**, lien GitHub.
+  (« Twenty-three providers »).
+- CTA final (dégradé rouge sombre) + footer complet en anglais : colonnes
+  Product / Resources / Legal, description, **année dynamique**, lien GitHub.
 - Polish : float du `ChatDemo`, press states des boutons, arrow shift des liens,
   `prefers-reduced-motion` respecté (`MotionConfig reducedMotion="user"` dans
   `ChatDemo`, animation désactivée via media query, scroll-behavior:smooth
   uniquement sans reduced-motion).
 - Responsive : `overflow-x: clip` sur `.lp`, media query ≤400px (titres,
   chips), grille providers 2 colonnes ≤700px. Rendu statique ✓.
-- Meta : `metadataBase`, titre/description **français**, Open Graph `fr_FR` +
-  Twitter card, manifest/intégrité inchangés. Rendu `/` à **5.08 kB**.
+- Meta : `metadataBase`, titre/description **anglais**, Open Graph `en_US` +
+  Twitter card, manifest/intégrité inchangés. Rendu `/` à **4.97 kB**.
 - Build final : 0 erreur TS / lint (seul warning pré-existant
   `chat-stream.test.ts:11` « init » unused).
 
-**Claims vérifiés** : MIT confirmé dans `package.json:45` ; « 20+ fournisseurs »
+**Claims vérifiés** : MIT confirmé dans `package.json:45` ; « 20+ providers »
 (vérité : 23), « 3 surfaces » (web/desktop/CLI), « 2 runtimes locaux »
 (Ollama/LM Studio).
 
-**Incohérences visuelles restantes (non bloquantes, hors périmètre des 9 étapes)**
+**Nettoyage (commit `chore: landing - nettoyage eyebrow, CSS orphelin, HeroScene`)**
 
-1. Sections **Models** (« 04 / Local + cloud »), **Privacy** (« 06 / Privacy by
-   choice »), **Surfaces** (« 07 / Everywhere you work ») et **Developer**
-   (« 08 / Developer workflow ») sont encore **en anglais** et numérotées à
-   l'ancienne (01–08) — à traduire/normaliser dans une passe future.
-2. La section Getting started porte l'eyebrow « 03 » et les sections suivantes
-   gardent leurs anciens numéros ; la numérotation 01–08 n'est plus continue.
-3. `HeroScene` (`components/three/hero-scene.tsx`) n'est plus utilisé sur la
-   landing mais le fichier existe toujours.
-4. `.lp-hero__signals`, `.lp-hero__eyebrow` et `.lp-marquee` : CSS orphelin
-   (plus de markup correspondant) à nettoyer.
-5. `docs` et les pages auth restent en anglais (choix assumé — seule la landing
-   est en français).
+1. Numérotation des eyebrows **continue 01–07** dans l'ordre de la page :
+   01 How it works · 02 Capabilities · 03 Local + cloud · 04 Supported providers
+   · 05 Privacy by choice · 06 Everywhere you work · 07 Developer workflow.
+   Le CTA final reste volontairement non numéroté.
+2. CSS orphelin supprimé (vérifié par grep, plus aucun usage JSX) :
+   `.lp-demo`, `.lp-hero__eyebrow`, `.lp-hero__signals` (définitions + référence
+   dans le media query ≤1024px). `.lp-marquee` avait déjà été retiré.
+3. `HeroScene` (`components/three/hero-scene.tsx`) : **inutilisé partout dans le
+   projet** (aucun import dans `apps/web/src`) → **fichier supprimé**. Les autres
+   composants `three/` (GlobalIntelligenceScene, etc.) restent utilisés par le
+   workspace.
+
+**Incohérences restantes** : aucune identifiée. Toute la landing est en anglais,
+cohérente avec le reste du produit.

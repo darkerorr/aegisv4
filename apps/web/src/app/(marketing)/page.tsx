@@ -95,7 +95,7 @@ export default function Landing() {
       <section className="lp-start">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">03 / How it works</span>
+            <span className="lp-eyebrow">01 / How it works</span>
             <h2 className="lp-section-title">Ready in three <span className="lp-accent">steps.</span></h2>
             <p className="lp-section-copy">No spreadsheets, no endless setup — Aegis starts in three deliberate moves.</p>
           </Reveal>
@@ -145,7 +145,7 @@ export default function Landing() {
         <div className="shell lp-models__grid">
           <Reveal><ModelOrbit /></Reveal>
           <Reveal>
-            <span className="lp-eyebrow">04 / Local + cloud</span>
+            <span className="lp-eyebrow">03 / Local + cloud</span>
             <h2 className="lp-section-title">The model becomes a choice — not a constraint.</h2>
             <p className="lp-section-copy">Local privacy, frontier reasoning, vision and coding — all organized by capability instead of technical URLs.</p>
             <div className="lp-chips">
@@ -186,7 +186,7 @@ export default function Landing() {
       <section className="lp-privacy">
         <div className="shell lp-privacy__grid">
           <Reveal>
-            <span className="lp-eyebrow">06 / Privacy by choice</span>
+            <span className="lp-eyebrow">05 / Privacy by choice</span>
             <h2 className="lp-section-title">Nothing moves silently.</h2>
             <p className="lp-section-copy">Aegis separates local execution from cloud providers and makes integration permissions visible. You choose the model and the tools in each workflow.</p>
             <div className="lp-privacy__points">
@@ -204,7 +204,7 @@ export default function Landing() {
       <section className="lp-surfaces">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">07 / Everywhere you work</span>
+            <span className="lp-eyebrow">06 / Everywhere you work</span>
             <h2 className="lp-section-title">One workspace.<br />Three deliberate surfaces.</h2>
           </Reveal>
           <div className="lp-triptych">
@@ -219,7 +219,7 @@ export default function Landing() {
       <section className="lp-dev">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">08 / Developer workflow</span>
+            <span className="lp-eyebrow">07 / Developer workflow</span>
             <h2 className="lp-section-title">Browser, desktop and terminal — one deliberate system.</h2>
           </Reveal>
           <div className="lp-dev__cards">
