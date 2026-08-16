@@ -7,11 +7,25 @@ const geist = localFont({ src: [{ path: "../../public/fonts/geist.woff2", weight
 const geistMono = localFont({ src: [{ path: "../../public/fonts/geist-mono.woff2", weight: "100 900" }], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "Aegis — Every intelligence. One workspace.", template: "%s — Aegis" },
-  description: "Use local models, leading cloud providers and connected tools from one private AI workspace.",
+  metadataBase: new URL("http://localhost:3000"),
+  title: { default: "Aegis — Tous vos modèles d'IA. Une seule interface.", template: "%s — Aegis" },
+  description: "Tous vos modèles d'IA — OpenAI, Anthropic, NVIDIA, Groq, Ollama et plus — orchestrez-les depuis un workspace local-first et open source.",
   applicationName: "Aegis",
   manifest: "/manifest.webmanifest",
-  icons: { icon: "/brand/aegis-logo.png", apple: "/brand/aegis-logo.png" }
+  icons: { icon: "/brand/aegis-logo.png", apple: "/brand/aegis-logo.png" },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Aegis",
+    title: "Aegis — Tous vos modèles d'IA. Une seule interface.",
+    description: "Tous vos modèles d'IA — OpenAI, Anthropic, NVIDIA, Groq, Ollama et plus — orchestrez-les depuis un workspace local-first et open source.",
+    images: [{ url: "/brand/aegis-logo.png", width: 512, height: 512, alt: "Aegis" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Aegis — Tous vos modèles d'IA. Une seule interface.",
+    description: "Tous vos modèles d'IA orchestrez depuis un workspace local-first et open source.",
+  },
 };
 export const viewport: Viewport = { themeColor: "#000000", width: "device-width", initialScale: 1 };
 

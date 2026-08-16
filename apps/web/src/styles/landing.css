@@ -4,6 +4,7 @@
 .lp {
   background: #050505;
   color: #f5f5f5;
+  overflow-x: clip;
 }
 
 .lp-eyebrow {
@@ -683,6 +684,25 @@
   }
   .lp-cta__title {
     font-size: clamp(4rem, 18vw, 7rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .lp-hero__title {
+    font-size: clamp(2.6rem, 15vw, 3.4rem);
+  }
+  .lp-hero__metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+  .lp-provider-chip {
+    padding: 11px 12px;
+    font-size: 0.78rem;
+  }
+  .demo-provider-strip {
+    display: none;
+  }
+  .lp-cta__title {
+    font-size: clamp(3.2rem, 15vw, 4rem);
   }
 }
 
