@@ -22,6 +22,33 @@ import { ChatDemo } from "@/components/marketing/chat-demo";
 import { ModelOrbit } from "@/components/marketing/model-orbit";
 import { PrivacyVisual } from "@/components/marketing/privacy-visual";
 import { HeroActions } from "@/components/marketing/hero-actions";
+import { ProviderIcon } from "@/components/brand/provider-icon";
+
+const providers = [
+  { slug: "openai", name: "OpenAI" },
+  { slug: "anthropic", name: "Anthropic" },
+  { slug: "gemini", name: "Google Gemini" },
+  { slug: "nvidia", name: "NVIDIA NIM" },
+  { slug: "openrouter", name: "OpenRouter" },
+  { slug: "mistral", name: "Mistral" },
+  { slug: "groq", name: "Groq" },
+  { slug: "deepseek", name: "DeepSeek" },
+  { slug: "qwen", name: "Qwen" },
+  { slug: "meta", name: "Meta Llama" },
+  { slug: "together", name: "Together AI" },
+  { slug: "fireworks", name: "Fireworks AI" },
+  { slug: "perplexity", name: "Perplexity" },
+  { slug: "sambanova", name: "SambaNova" },
+  { slug: "hyperbolic", name: "Hyperbolic" },
+  { slug: "zhipu", name: "Zhipu AI" },
+  { slug: "moonshot", name: "Moonshot AI" },
+  { slug: "minimax", name: "MiniMax" },
+  { slug: "novita", name: "Novita AI" },
+  { slug: "hugging-face", name: "Hugging Face" },
+  { slug: "xai", name: "xAI" },
+  { slug: "ollama", name: "Ollama · local" },
+  { slug: "lmstudio", name: "LM Studio · local" },
+];
 
 const steps = [
   { n: "01", icon: Network, title: "Connecte tes providers", copy: "Ajoutez une clé API (OpenAI, Anthropic, NVIDIA, Groq…) ou un runtime local (Ollama, LM Studio). Vos clés restent chiffrées sur votre machine." },
@@ -133,16 +160,23 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Integrations */}
-      <section id="integrations" className="lp-integrations">
+      {/* Providers */}
+      <section id="providers" className="lp-providers">
         <div className="shell">
           <Reveal className="lp-section-head">
-            <span className="lp-eyebrow">05 / Connected tools</span>
-            <h2 className="lp-section-title">Context arrives with permission.</h2>
-            <p className="lp-section-copy">Bring the work you choose from Google Workspace and GitHub. Keep scopes visible and control where intelligence reaches.</p>
+            <span className="lp-eyebrow">04 / Providers supportés</span>
+            <h2 className="lp-section-title">Utilise n&apos;importe quel <span className="lp-accent">modèle.</span></h2>
+            <p className="lp-section-copy">Vingt-trois fournisseurs — du raisonnement de pointe au local sur votre machine — pilotés depuis une seule interface.</p>
           </Reveal>
-          <div className="lp-marquee">
-            {["Gmail", "Drive", "Calendar", "GitHub", "NVIDIA", "OpenRouter"].map((x, i) => <span key={x} style={{ "--n": i } as React.CSSProperties}>{x}</span>)}
+          <div className="lp-provider-cloud">
+            {providers.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 0.02}>
+                <span className="lp-provider-chip">
+                  <ProviderIcon provider={p.slug} variant="color" size={20} />
+                  <span>{p.name}</span>
+                </span>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
