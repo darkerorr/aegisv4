@@ -13,12 +13,10 @@ import {
   Laptop,
   MessagesSquare,
   Network,
-  ShieldCheck,
   Sparkles,
   TerminalSquare,
   Workflow,
 } from "lucide-react";
-import { HeroScene } from "@/components/three/hero-scene";
 import { Reveal } from "@/components/motion/reveal";
 import { ChatDemo } from "@/components/marketing/chat-demo";
 import { ModelOrbit } from "@/components/marketing/model-orbit";
@@ -40,19 +38,21 @@ export default function Landing() {
       {/* Hero */}
       <section className="lp-hero">
         <div className="lp-hero__grid" />
+        <div className="lp-hero__glow" aria-hidden="true" />
         <div className="shell lp-hero__inner">
           <div className="lp-hero__copy">
-            <span className="lp-eyebrow lp-hero__eyebrow"><i />A private intelligence workspace</span>
-            <h1 className="lp-hero__title">Every intelligence.<br /><span className="lp-hero__accent">One protected workspace.</span></h1>
-            <p className="lp-hero__lead">Local models, leading cloud providers and your connected tools — in one calm, deliberate surface.</p>
+            <span className="lp-badge"><i />Multi-providers IA · Local-first</span>
+            <h1 className="lp-hero__title">Tous vos modèles d&apos;IA.<br /><span className="lp-hero__accent">Une seule interface.</span></h1>
+            <p className="lp-hero__lead">Orchestrez OpenAI, Anthropic, NVIDIA NIM, OpenRouter, Groq, Ollama et plus dans un workspace unique — avec le contrôle total de vos providers et une exécution locale possible.</p>
             <HeroActions />
-            <div className="lp-hero__signals">
-              {[[Laptop, "Local AI"], [Cloud, "Cloud models"], [Network, "Connected tools"], [ShieldCheck, "Private workspace"]].map(([Icon, label]) => (
-                <span key={String(label)}>{typeof Icon !== "string" && <Icon size={14} />} {label as string}</span>
-              ))}
+            <div className="lp-hero__metrics">
+              <div><strong>20+</strong><span>fournisseurs IA</span></div>
+              <div><strong>3</strong><span>surfaces · web, desktop, CLI</span></div>
+              <div><strong>MIT</strong><span>licence open source</span></div>
+              <div><strong>Local-first</strong><span>Ollama &amp; LM Studio</span></div>
             </div>
           </div>
-          <HeroScene />
+          <div className="lp-hero__visual"><ChatDemo /></div>
         </div>
         <div className="lp-hero__fade" />
       </section>
@@ -84,20 +84,8 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Demo */}
-      <section className="lp-demo">
-        <Reveal className="shell">
-          <div className="lp-section-head">
-            <span className="lp-eyebrow">02 / One calm surface</span>
-            <h2 className="lp-section-title">Think across models,<br />not inside silos.</h2>
-            <p className="lp-section-copy">Research, reason, code and act without rebuilding context every time you change intelligence.</p>
-          </div>
-          <ChatDemo />
-        </Reveal>
-      </section>
-
       {/* Capabilities */}
-      <section className="lp-features">
+      <section id="features" className="lp-features">
         <div className="shell">
           <Reveal className="lp-section-head">
             <span className="lp-eyebrow">03 / Capabilities</span>
